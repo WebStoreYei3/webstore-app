@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="webstore@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="webstore">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <table id="6" parent="2" name="almacen"/>
+    <table id="7" parent="2" name="direcciones_entrega"/>
+    <table id="8" parent="2" name="empleado"/>
+    <table id="9" parent="2" name="producto"/>
+    <table id="10" parent="2" name="rol"/>
+    <table id="11" parent="2" name="stock"/>
+    <table id="12" parent="2" name="usuario"/>
+    <column id="13" parent="6" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="6" name="C_DESCRIPCION">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="6" name="I_ID_EMPL_RESPONSABLE">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="6" name="C_UBICACION">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="6" name="C_TELEFONO1">
+      <Position>5</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="6" name="C_TELEFONO2">
+      <Position>6</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <index id="19" parent="6" name="FK_EMPLEADO_ALMACEN_idx">
+      <ColNames>I_ID_EMPL_RESPONSABLE</ColNames>
+    </index>
+    <key id="20" parent="6" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="21" parent="6" name="FK_EMPLEADO_ALMACEN">
+      <ColNames>I_ID_EMPL_RESPONSABLE</ColNames>
+      <RefSchemaName>webstore</RefSchemaName>
+      <RefTableName>empleado</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="22" parent="7" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="7" name="C_DIRECCION">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="7" name="C_ENTRE_CALLES">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="7" name="I_ID_USUARIO">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="26" parent="7" name="FK_USUARIO_DIRECCION_ENTREGA_idx">
+      <ColNames>I_ID_USUARIO</ColNames>
+    </index>
+    <key id="27" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="28" parent="7" name="FK_USUARIO_DIRECCION_ENTREGA">
+      <ColNames>I_ID_USUARIO</ColNames>
+      <RefSchemaName>webstore</RefSchemaName>
+      <RefTableName>usuario</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="29" parent="8" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="8" name="C_CODIGO">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="8" name="C_NOMBRE">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="8" name="C_APEPAT">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="8" name="C_APEMAT">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="34" parent="8" name="I_ID_ROL">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="35" parent="8" name="FK_ROL_EMPLEADO_idx">
+      <ColNames>I_ID_ROL</ColNames>
+    </index>
+    <key id="36" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="37" parent="8" name="FK_ROL_EMPLEADO">
+      <ColNames>I_ID_ROL</ColNames>
+      <RefSchemaName>webstore</RefSchemaName>
+      <RefTableName>rol</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="38" parent="9" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="9" name="C_CODIGO">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="9" name="C_NOMBRE">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="9" name="C_TIPO">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="9" name="C_DESCRIPCION">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="43" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="10" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="10" name="C_CODIGO">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="10" name="C_DESCRIPCION">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="10" name="ESTADO">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="48" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="11" name="C_SKU">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="11" name="I_ID_PRODUCTO">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="11" name="I_ID_ALMACEN">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="11" name="I_CANTIDAD_DISPONIBLE">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="11" name="I_CANTIDAD_MINIMA">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="54" parent="11" name="FK_ALMACEN_STOCK_idx">
+      <ColNames>I_ID_ALMACEN</ColNames>
+    </index>
+    <index id="55" parent="11" name="FK_PRODUCTO_STOCK_idx">
+      <ColNames>I_ID_PRODUCTO</ColNames>
+    </index>
+    <key id="56" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>C_SKU</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="57" parent="11" name="FK_PRODUCTO_STOCK">
+      <ColNames>I_ID_PRODUCTO</ColNames>
+      <RefSchemaName>webstore</RefSchemaName>
+      <RefTableName>producto</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="58" parent="11" name="FK_ALMACEN_STOCK">
+      <ColNames>I_ID_ALMACEN</ColNames>
+      <RefSchemaName>webstore</RefSchemaName>
+      <RefTableName>almacen</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="59" parent="12" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="12" name="C_NOMBRE">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="12" name="C_APEPAT">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="12" name="C_APEMAT">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="63" parent="12" name="C_MAIL">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="12" name="C_TELEFONO">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="65" parent="12" name="C_CELULAR">
+      <Position>7</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="12" name="C_DIRECCION1">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="12" name="C_DIRECCION2">
+      <Position>9</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="68" parent="12" name="F_MIEMBRO_DESDE">
+      <Position>10</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="12" name="C_ESTADO">
+      <Position>11</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="70" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

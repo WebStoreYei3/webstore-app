@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="webapp-app-pu">
+        <class>com.gemobile.core.entity.AlmacenEntity</class>
+        <class>com.gemobile.core.entity.DireccionesEntregaEntity</class>
+        <class>com.gemobile.core.entity.EmpleadoEntity</class>
+        <class>com.gemobile.core.entity.ProductoEntity</class>
+        <class>com.gemobile.core.entity.RolEntity</class>
+        <class>com.gemobile.core.entity.StockEntity</class>
+        <class>com.gemobile.core.entity.UsuarioEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/webstore"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/webstore"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/webstore"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/webstore"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
