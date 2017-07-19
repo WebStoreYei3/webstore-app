@@ -8,11 +8,9 @@ import java.util.Collection;
 public class EmpleadoEntity {
     private Integer id;
     private String cCodigo;
-    private String cNombre;
-    private String cApepat;
-    private String cApemat;
     private Collection<AlmacenEntity> almacenes;
     private RolEntity rol;
+    private UsuarioEntity usuario;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -34,36 +32,6 @@ public class EmpleadoEntity {
         this.cCodigo = cCodigo;
     }
 
-    @Basic
-    @Column(name = "C_NOMBRE", nullable = false, length = 45)
-    public String getcNombre() {
-        return cNombre;
-    }
-
-    public void setcNombre(String cNombre) {
-        this.cNombre = cNombre;
-    }
-
-    @Basic
-    @Column(name = "C_APEPAT", nullable = false, length = 45)
-    public String getcApepat() {
-        return cApepat;
-    }
-
-    public void setcApepat(String cApepat) {
-        this.cApepat = cApepat;
-    }
-
-    @Basic
-    @Column(name = "C_APEMAT", nullable = true, length = 45)
-    public String getcApemat() {
-        return cApemat;
-    }
-
-    public void setcApemat(String cApemat) {
-        this.cApemat = cApemat;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,9 +41,6 @@ public class EmpleadoEntity {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cCodigo != null ? !cCodigo.equals(that.cCodigo) : that.cCodigo != null) return false;
-        if (cNombre != null ? !cNombre.equals(that.cNombre) : that.cNombre != null) return false;
-        if (cApepat != null ? !cApepat.equals(that.cApepat) : that.cApepat != null) return false;
-        if (cApemat != null ? !cApemat.equals(that.cApemat) : that.cApemat != null) return false;
 
         return true;
     }
@@ -84,13 +49,10 @@ public class EmpleadoEntity {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cCodigo != null ? cCodigo.hashCode() : 0);
-        result = 31 * result + (cNombre != null ? cNombre.hashCode() : 0);
-        result = 31 * result + (cApepat != null ? cApepat.hashCode() : 0);
-        result = 31 * result + (cApemat != null ? cApemat.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "empleadoResponsable")
+    @OneToMany(mappedBy = "empleado")
     public Collection<AlmacenEntity> getAlmacenes() {
         return almacenes;
     }
@@ -107,5 +69,15 @@ public class EmpleadoEntity {
 
     public void setRol(RolEntity rol) {
         this.rol = rol;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "I_ID_USUARIO", referencedColumnName = "ID", nullable = false)
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
     }
 }

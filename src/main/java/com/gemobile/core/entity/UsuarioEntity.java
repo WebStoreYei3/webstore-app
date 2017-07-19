@@ -18,7 +18,10 @@ public class UsuarioEntity {
     private String cDireccion2;
     private Timestamp fMiembroDesde;
     private String cEstado;
-    private Collection<DireccionesEntregaEntity> direccionesEntrega;
+    private String cUsuario;
+    private String cContrasenia;
+    private Collection<DireccionesEntregaEntity> direcciones;
+    private EmpleadoEntity empleado;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -130,6 +133,26 @@ public class UsuarioEntity {
         this.cEstado = cEstado;
     }
 
+    @Basic
+    @Column(name = "C_USUARIO", nullable = false, length = 45)
+    public String getcUsuario() {
+        return cUsuario;
+    }
+
+    public void setcUsuario(String cUsuario) {
+        this.cUsuario = cUsuario;
+    }
+
+    @Basic
+    @Column(name = "C_CONTRASENIA", nullable = false, length = 45)
+    public String getcContrasenia() {
+        return cContrasenia;
+    }
+
+    public void setcContrasenia(String cContrasenia) {
+        this.cContrasenia = cContrasenia;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,6 +172,8 @@ public class UsuarioEntity {
         if (fMiembroDesde != null ? !fMiembroDesde.equals(that.fMiembroDesde) : that.fMiembroDesde != null)
             return false;
         if (cEstado != null ? !cEstado.equals(that.cEstado) : that.cEstado != null) return false;
+        if (cUsuario != null ? !cUsuario.equals(that.cUsuario) : that.cUsuario != null) return false;
+        if (cContrasenia != null ? !cContrasenia.equals(that.cContrasenia) : that.cContrasenia != null) return false;
 
         return true;
     }
@@ -166,15 +191,26 @@ public class UsuarioEntity {
         result = 31 * result + (cDireccion2 != null ? cDireccion2.hashCode() : 0);
         result = 31 * result + (fMiembroDesde != null ? fMiembroDesde.hashCode() : 0);
         result = 31 * result + (cEstado != null ? cEstado.hashCode() : 0);
+        result = 31 * result + (cUsuario != null ? cUsuario.hashCode() : 0);
+        result = 31 * result + (cContrasenia != null ? cContrasenia.hashCode() : 0);
         return result;
     }
 
     @OneToMany(mappedBy = "usuario")
-    public Collection<DireccionesEntregaEntity> getDireccionesEntrega() {
-        return direccionesEntrega;
+    public Collection<DireccionesEntregaEntity> getDirecciones() {
+        return direcciones;
     }
 
-    public void setDireccionesEntrega(Collection<DireccionesEntregaEntity> direccionesEntrega) {
-        this.direccionesEntrega = direccionesEntrega;
+    public void setDirecciones(Collection<DireccionesEntregaEntity> direcciones) {
+        this.direcciones = direcciones;
+    }
+
+    @OneToOne(mappedBy = "usuario")
+    public EmpleadoEntity getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(EmpleadoEntity empleado) {
+        this.empleado = empleado;
     }
 }

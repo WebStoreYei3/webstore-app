@@ -11,7 +11,7 @@ public class AlmacenEntity {
     private String cUbicacion;
     private String cTelefono1;
     private String cTelefono2;
-    private EmpleadoEntity empleadoResponsable;
+    private EmpleadoEntity empleado;
     private Collection<StockEntity> stocks;
 
     @Id
@@ -92,12 +92,12 @@ public class AlmacenEntity {
 
     @ManyToOne
     @JoinColumn(name = "I_ID_EMPL_RESPONSABLE", referencedColumnName = "ID", nullable = false)
-    public EmpleadoEntity getEmpleadoResponsable() {
-        return empleadoResponsable;
+    public EmpleadoEntity getEmpleado() {
+        return empleado;
     }
 
-    public void setEmpleadoResponsable(EmpleadoEntity empleadoResponsable) {
-        this.empleadoResponsable = empleadoResponsable;
+    public void setEmpleado(EmpleadoEntity empleado) {
+        this.empleado = empleado;
     }
 
     @OneToMany(mappedBy = "almacen")
