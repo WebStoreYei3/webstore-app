@@ -1,10 +1,8 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
-/**
- * Created by Oscar Rodriguez on 14/07/2017.
- */
 @Entity
 @Table(name = "rol", schema = "webstore", catalog = "")
 public class RolEntity {
@@ -12,6 +10,7 @@ public class RolEntity {
     private String cCodigo;
     private String cDescripcion;
     private String estado;
+    private Collection<EmpleadoEntity> empleados;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -76,5 +75,14 @@ public class RolEntity {
         result = 31 * result + (cDescripcion != null ? cDescripcion.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "rol")
+    public Collection<EmpleadoEntity> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Collection<EmpleadoEntity> empleados) {
+        this.empleados = empleados;
     }
 }

@@ -1,10 +1,8 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
-/**
- * Created by Oscar Rodriguez on 14/07/2017.
- */
 @Entity
 @Table(name = "producto", schema = "webstore", catalog = "")
 public class ProductoEntity {
@@ -13,6 +11,7 @@ public class ProductoEntity {
     private String cNombre;
     private String cTipo;
     private String cDescripcion;
+    private Collection<StockEntity> stocks;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -88,5 +87,14 @@ public class ProductoEntity {
         result = 31 * result + (cTipo != null ? cTipo.hashCode() : 0);
         result = 31 * result + (cDescripcion != null ? cDescripcion.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "producto")
+    public Collection<StockEntity> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(Collection<StockEntity> stocks) {
+        this.stocks = stocks;
     }
 }

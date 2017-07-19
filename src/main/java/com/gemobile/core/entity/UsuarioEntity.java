@@ -2,10 +2,8 @@ package com.gemobile.core.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
-/**
- * Created by Oscar Rodriguez on 14/07/2017.
- */
 @Entity
 @Table(name = "usuario", schema = "webstore", catalog = "")
 public class UsuarioEntity {
@@ -20,6 +18,7 @@ public class UsuarioEntity {
     private String cDireccion2;
     private Timestamp fMiembroDesde;
     private String cEstado;
+    private Collection<DireccionesEntregaEntity> direccionesEntrega;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -168,5 +167,14 @@ public class UsuarioEntity {
         result = 31 * result + (fMiembroDesde != null ? fMiembroDesde.hashCode() : 0);
         result = 31 * result + (cEstado != null ? cEstado.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "usuario")
+    public Collection<DireccionesEntregaEntity> getDireccionesEntrega() {
+        return direccionesEntrega;
+    }
+
+    public void setDireccionesEntrega(Collection<DireccionesEntregaEntity> direccionesEntrega) {
+        this.direccionesEntrega = direccionesEntrega;
     }
 }

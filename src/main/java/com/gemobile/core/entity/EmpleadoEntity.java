@@ -1,10 +1,8 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
-/**
- * Created by Oscar Rodriguez on 14/07/2017.
- */
 @Entity
 @Table(name = "empleado", schema = "webstore", catalog = "")
 public class EmpleadoEntity {
@@ -13,7 +11,8 @@ public class EmpleadoEntity {
     private String cNombre;
     private String cApepat;
     private String cApemat;
-    private Integer iIdRol;
+    private Collection<AlmacenEntity> almacenes;
+    private RolEntity rol;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -65,16 +64,6 @@ public class EmpleadoEntity {
         this.cApemat = cApemat;
     }
 
-    @Basic
-    @Column(name = "I_ID_ROL", nullable = false)
-    public Integer getiIdRol() {
-        return iIdRol;
-    }
-
-    public void setiIdRol(Integer iIdRol) {
-        this.iIdRol = iIdRol;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,7 +76,6 @@ public class EmpleadoEntity {
         if (cNombre != null ? !cNombre.equals(that.cNombre) : that.cNombre != null) return false;
         if (cApepat != null ? !cApepat.equals(that.cApepat) : that.cApepat != null) return false;
         if (cApemat != null ? !cApemat.equals(that.cApemat) : that.cApemat != null) return false;
-        if (iIdRol != null ? !iIdRol.equals(that.iIdRol) : that.iIdRol != null) return false;
 
         return true;
     }
@@ -99,7 +87,25 @@ public class EmpleadoEntity {
         result = 31 * result + (cNombre != null ? cNombre.hashCode() : 0);
         result = 31 * result + (cApepat != null ? cApepat.hashCode() : 0);
         result = 31 * result + (cApemat != null ? cApemat.hashCode() : 0);
-        result = 31 * result + (iIdRol != null ? iIdRol.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "empleadoResponsable")
+    public Collection<AlmacenEntity> getAlmacenes() {
+        return almacenes;
+    }
+
+    public void setAlmacenes(Collection<AlmacenEntity> almacenes) {
+        this.almacenes = almacenes;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "I_ID_ROL", referencedColumnName = "ID", nullable = false)
+    public RolEntity getRol() {
+        return rol;
+    }
+
+    public void setRol(RolEntity rol) {
+        this.rol = rol;
     }
 }

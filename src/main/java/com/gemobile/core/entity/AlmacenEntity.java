@@ -1,19 +1,18 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
-/**
- * Created by Oscar Rodriguez on 14/07/2017.
- */
 @Entity
 @Table(name = "almacen", schema = "webstore", catalog = "")
 public class AlmacenEntity {
     private Integer id;
     private String cDescripcion;
-    private Integer iIdEmplResponsable;
     private String cUbicacion;
     private String cTelefono1;
     private String cTelefono2;
+    private EmpleadoEntity empleadoResponsable;
+    private Collection<StockEntity> stocks;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -33,16 +32,6 @@ public class AlmacenEntity {
 
     public void setcDescripcion(String cDescripcion) {
         this.cDescripcion = cDescripcion;
-    }
-
-    @Basic
-    @Column(name = "I_ID_EMPL_RESPONSABLE", nullable = false)
-    public Integer getiIdEmplResponsable() {
-        return iIdEmplResponsable;
-    }
-
-    public void setiIdEmplResponsable(Integer iIdEmplResponsable) {
-        this.iIdEmplResponsable = iIdEmplResponsable;
     }
 
     @Basic
@@ -84,8 +73,6 @@ public class AlmacenEntity {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cDescripcion != null ? !cDescripcion.equals(that.cDescripcion) : that.cDescripcion != null) return false;
-        if (iIdEmplResponsable != null ? !iIdEmplResponsable.equals(that.iIdEmplResponsable) : that.iIdEmplResponsable != null)
-            return false;
         if (cUbicacion != null ? !cUbicacion.equals(that.cUbicacion) : that.cUbicacion != null) return false;
         if (cTelefono1 != null ? !cTelefono1.equals(that.cTelefono1) : that.cTelefono1 != null) return false;
         if (cTelefono2 != null ? !cTelefono2.equals(that.cTelefono2) : that.cTelefono2 != null) return false;
@@ -97,10 +84,28 @@ public class AlmacenEntity {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cDescripcion != null ? cDescripcion.hashCode() : 0);
-        result = 31 * result + (iIdEmplResponsable != null ? iIdEmplResponsable.hashCode() : 0);
         result = 31 * result + (cUbicacion != null ? cUbicacion.hashCode() : 0);
         result = 31 * result + (cTelefono1 != null ? cTelefono1.hashCode() : 0);
         result = 31 * result + (cTelefono2 != null ? cTelefono2.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "I_ID_EMPL_RESPONSABLE", referencedColumnName = "ID", nullable = false)
+    public EmpleadoEntity getEmpleadoResponsable() {
+        return empleadoResponsable;
+    }
+
+    public void setEmpleadoResponsable(EmpleadoEntity empleadoResponsable) {
+        this.empleadoResponsable = empleadoResponsable;
+    }
+
+    @OneToMany(mappedBy = "almacen")
+    public Collection<StockEntity> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(Collection<StockEntity> stocks) {
+        this.stocks = stocks;
     }
 }
