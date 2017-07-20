@@ -1,22 +1,14 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "empleado", schema = "webstore", catalog = "")
 public class EmpleadoEntity {
     private Integer id;
     private String cCodigo;
-    private Collection<AlmacenEntity> almacenesACargo;
-    private RolEntity rol;
-    private UsuarioEntity usuario;
-    private Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStock;
-    private Collection<OperacionAbmStockEntity> operacionAbm;
-    private Collection<OrdenEntregaEntity> ordenesEntrega;
-    private Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitado;
-    private Collection<OrdenMostradorEntity> ordenesMostradorVenta;
-    private Collection<OrdenMostradorEntity> ordenesMostradorCaja;
+    private Integer iIdRol;
+    private Integer iIdUsuario;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -38,6 +30,26 @@ public class EmpleadoEntity {
         this.cCodigo = cCodigo;
     }
 
+    @Basic
+    @Column(name = "I_ID_ROL", nullable = false)
+    public Integer getiIdRol() {
+        return iIdRol;
+    }
+
+    public void setiIdRol(Integer iIdRol) {
+        this.iIdRol = iIdRol;
+    }
+
+    @Basic
+    @Column(name = "I_ID_USUARIO", nullable = false)
+    public Integer getiIdUsuario() {
+        return iIdUsuario;
+    }
+
+    public void setiIdUsuario(Integer iIdUsuario) {
+        this.iIdUsuario = iIdUsuario;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,6 +59,8 @@ public class EmpleadoEntity {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cCodigo != null ? !cCodigo.equals(that.cCodigo) : that.cCodigo != null) return false;
+        if (iIdRol != null ? !iIdRol.equals(that.iIdRol) : that.iIdRol != null) return false;
+        if (iIdUsuario != null ? !iIdUsuario.equals(that.iIdUsuario) : that.iIdUsuario != null) return false;
 
         return true;
     }
@@ -55,89 +69,8 @@ public class EmpleadoEntity {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cCodigo != null ? cCodigo.hashCode() : 0);
+        result = 31 * result + (iIdRol != null ? iIdRol.hashCode() : 0);
+        result = 31 * result + (iIdUsuario != null ? iIdUsuario.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "empleadoResponsable")
-    public Collection<AlmacenEntity> getAlmacenesACargo() {
-        return almacenesACargo;
-    }
-
-    public void setAlmacenesACargo(Collection<AlmacenEntity> almacenesACargo) {
-        this.almacenesACargo = almacenesACargo;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ROL", referencedColumnName = "ID", nullable = false)
-    public RolEntity getRol() {
-        return rol;
-    }
-
-    public void setRol(RolEntity rol) {
-        this.rol = rol;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "I_ID_USUARIO", referencedColumnName = "ID", nullable = false)
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
-
-    @OneToMany(mappedBy = "empleado")
-    public Collection<MovimientoAlmacenStockEntity> getMovimientosAlmacenStock() {
-        return movimientosAlmacenStock;
-    }
-
-    public void setMovimientosAlmacenStock(Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStock) {
-        this.movimientosAlmacenStock = movimientosAlmacenStock;
-    }
-
-    @OneToMany(mappedBy = "empleado")
-    public Collection<OperacionAbmStockEntity> getOperacionAbm() {
-        return operacionAbm;
-    }
-
-    public void setOperacionAbm(Collection<OperacionAbmStockEntity> operacionAbm) {
-        this.operacionAbm = operacionAbm;
-    }
-
-    @OneToMany(mappedBy = "empleado")
-    public Collection<OrdenEntregaEntity> getOrdenesEntrega() {
-        return ordenesEntrega;
-    }
-
-    public void setOrdenesEntrega(Collection<OrdenEntregaEntity> ordenesEntrega) {
-        this.ordenesEntrega = ordenesEntrega;
-    }
-
-    @OneToMany(mappedBy = "empleadoEntrega")
-    public Collection<OrdenEntregaInvitadoEntity> getOrdenesEntregaInvitado() {
-        return ordenesEntregaInvitado;
-    }
-
-    public void setOrdenesEntregaInvitado(Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitado) {
-        this.ordenesEntregaInvitado = ordenesEntregaInvitado;
-    }
-
-    @OneToMany(mappedBy = "empleadoVenta")
-    public Collection<OrdenMostradorEntity> getOrdenesMostradorVenta() {
-        return ordenesMostradorVenta;
-    }
-
-    public void setOrdenesMostradorVenta(Collection<OrdenMostradorEntity> ordenesMostradorVenta) {
-        this.ordenesMostradorVenta = ordenesMostradorVenta;
-    }
-
-    @OneToMany(mappedBy = "empleadoCaja")
-    public Collection<OrdenMostradorEntity> getOrdenesMostradorCaja() {
-        return ordenesMostradorCaja;
-    }
-
-    public void setOrdenesMostradorCaja(Collection<OrdenMostradorEntity> ordenesMostradorCaja) {
-        this.ordenesMostradorCaja = ordenesMostradorCaja;
     }
 }

@@ -1,7 +1,6 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "subtipo_producto", schema = "webstore", catalog = "")
@@ -9,8 +8,7 @@ public class SubtipoProductoEntity {
     private Integer id;
     private String cCodigo;
     private String cDescripcion;
-    private Collection<ProductoEntity> productos;
-    private TipoProductoEntity tipoProducto;
+    private Integer iIdTipoProducto;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -42,6 +40,16 @@ public class SubtipoProductoEntity {
         this.cDescripcion = cDescripcion;
     }
 
+    @Basic
+    @Column(name = "I_ID_TIPO_PRODUCTO", nullable = false)
+    public Integer getiIdTipoProducto() {
+        return iIdTipoProducto;
+    }
+
+    public void setiIdTipoProducto(Integer iIdTipoProducto) {
+        this.iIdTipoProducto = iIdTipoProducto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,6 +60,8 @@ public class SubtipoProductoEntity {
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cCodigo != null ? !cCodigo.equals(that.cCodigo) : that.cCodigo != null) return false;
         if (cDescripcion != null ? !cDescripcion.equals(that.cDescripcion) : that.cDescripcion != null) return false;
+        if (iIdTipoProducto != null ? !iIdTipoProducto.equals(that.iIdTipoProducto) : that.iIdTipoProducto != null)
+            return false;
 
         return true;
     }
@@ -61,25 +71,7 @@ public class SubtipoProductoEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cCodigo != null ? cCodigo.hashCode() : 0);
         result = 31 * result + (cDescripcion != null ? cDescripcion.hashCode() : 0);
+        result = 31 * result + (iIdTipoProducto != null ? iIdTipoProducto.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "subtipoProducto")
-    public Collection<ProductoEntity> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(Collection<ProductoEntity> productos) {
-        this.productos = productos;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_TIPO_PRODUCTO", referencedColumnName = "ID", nullable = false)
-    public TipoProductoEntity getTipoProducto() {
-        return tipoProducto;
-    }
-
-    public void setTipoProducto(TipoProductoEntity tipoProducto) {
-        this.tipoProducto = tipoProducto;
     }
 }

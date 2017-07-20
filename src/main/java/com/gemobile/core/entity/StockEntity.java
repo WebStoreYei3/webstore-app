@@ -2,19 +2,15 @@ package com.gemobile.core.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Collection;
 
 @Entity
 @Table(name = "stock", schema = "webstore", catalog = "")
 public class StockEntity {
     private String cSku;
+    private Integer iIdProducto;
+    private Integer iIdAlmacen;
     private BigDecimal dCantidadDisponible;
     private BigDecimal dCantidadMinima;
-    private Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStock;
-    private Collection<OperacionAbmStockEntity> operacionesABM;
-    private Collection<OrdenStockEntity> ordenesStock;
-    private ProductoEntity producto;
-    private AlmacenEntity almacen;
 
     @Id
     @Column(name = "C_SKU", nullable = false, length = 50)
@@ -24,6 +20,26 @@ public class StockEntity {
 
     public void setcSku(String cSku) {
         this.cSku = cSku;
+    }
+
+    @Basic
+    @Column(name = "I_ID_PRODUCTO", nullable = false)
+    public Integer getiIdProducto() {
+        return iIdProducto;
+    }
+
+    public void setiIdProducto(Integer iIdProducto) {
+        this.iIdProducto = iIdProducto;
+    }
+
+    @Basic
+    @Column(name = "I_ID_ALMACEN", nullable = false)
+    public Integer getiIdAlmacen() {
+        return iIdAlmacen;
+    }
+
+    public void setiIdAlmacen(Integer iIdAlmacen) {
+        this.iIdAlmacen = iIdAlmacen;
     }
 
     @Basic
@@ -54,6 +70,8 @@ public class StockEntity {
         StockEntity that = (StockEntity) o;
 
         if (cSku != null ? !cSku.equals(that.cSku) : that.cSku != null) return false;
+        if (iIdProducto != null ? !iIdProducto.equals(that.iIdProducto) : that.iIdProducto != null) return false;
+        if (iIdAlmacen != null ? !iIdAlmacen.equals(that.iIdAlmacen) : that.iIdAlmacen != null) return false;
         if (dCantidadDisponible != null ? !dCantidadDisponible.equals(that.dCantidadDisponible) : that.dCantidadDisponible != null)
             return false;
         if (dCantidadMinima != null ? !dCantidadMinima.equals(that.dCantidadMinima) : that.dCantidadMinima != null)
@@ -65,55 +83,10 @@ public class StockEntity {
     @Override
     public int hashCode() {
         int result = cSku != null ? cSku.hashCode() : 0;
+        result = 31 * result + (iIdProducto != null ? iIdProducto.hashCode() : 0);
+        result = 31 * result + (iIdAlmacen != null ? iIdAlmacen.hashCode() : 0);
         result = 31 * result + (dCantidadDisponible != null ? dCantidadDisponible.hashCode() : 0);
         result = 31 * result + (dCantidadMinima != null ? dCantidadMinima.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "stock")
-    public Collection<MovimientoAlmacenStockEntity> getMovimientosAlmacenStock() {
-        return movimientosAlmacenStock;
-    }
-
-    public void setMovimientosAlmacenStock(Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStock) {
-        this.movimientosAlmacenStock = movimientosAlmacenStock;
-    }
-
-    @OneToMany(mappedBy = "stock")
-    public Collection<OperacionAbmStockEntity> getOperacionesABM() {
-        return operacionesABM;
-    }
-
-    public void setOperacionesABM(Collection<OperacionAbmStockEntity> operacionesABM) {
-        this.operacionesABM = operacionesABM;
-    }
-
-    @OneToMany(mappedBy = "stock")
-    public Collection<OrdenStockEntity> getOrdenesStock() {
-        return ordenesStock;
-    }
-
-    public void setOrdenesStock(Collection<OrdenStockEntity> ordenesStock) {
-        this.ordenesStock = ordenesStock;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "I_ID_PRODUCTO", referencedColumnName = "ID", nullable = false)
-    public ProductoEntity getProducto() {
-        return producto;
-    }
-
-    public void setProducto(ProductoEntity producto) {
-        this.producto = producto;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ALMACEN", referencedColumnName = "ID", nullable = false)
-    public AlmacenEntity getAlmacen() {
-        return almacen;
-    }
-
-    public void setAlmacen(AlmacenEntity almacen) {
-        this.almacen = almacen;
     }
 }

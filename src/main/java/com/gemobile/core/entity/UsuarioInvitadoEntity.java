@@ -1,7 +1,6 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "usuario_invitado", schema = "webstore", catalog = "")
@@ -15,7 +14,6 @@ public class UsuarioInvitadoEntity {
     private String cCelular;
     private String cDireccion1;
     private String cDireccion2;
-    private Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitados;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -139,14 +137,5 @@ public class UsuarioInvitadoEntity {
         result = 31 * result + (cDireccion1 != null ? cDireccion1.hashCode() : 0);
         result = 31 * result + (cDireccion2 != null ? cDireccion2.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "usuarioInvitado")
-    public Collection<OrdenEntregaInvitadoEntity> getOrdenesEntregaInvitados() {
-        return ordenesEntregaInvitados;
-    }
-
-    public void setOrdenesEntregaInvitados(Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitados) {
-        this.ordenesEntregaInvitados = ordenesEntregaInvitados;
     }
 }

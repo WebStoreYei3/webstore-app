@@ -2,17 +2,15 @@ package com.gemobile.core.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 @Table(name = "orden_mostrador", schema = "webstore", catalog = "")
 public class OrdenMostradorEntity {
     private Integer id;
+    private Integer iIdAlmacen;
+    private Integer iIdEmpleadoVenta;
+    private Integer iIdEmpleadoCaja;
     private Timestamp fAlta;
-    private AlmacenEntity almacen;
-    private EmpleadoEntity empleadoVenta;
-    private EmpleadoEntity empleadoCaja;
-    private Collection<OrdenStockEntity> ordenStocks;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -22,6 +20,36 @@ public class OrdenMostradorEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "I_ID_ALMACEN", nullable = false)
+    public Integer getiIdAlmacen() {
+        return iIdAlmacen;
+    }
+
+    public void setiIdAlmacen(Integer iIdAlmacen) {
+        this.iIdAlmacen = iIdAlmacen;
+    }
+
+    @Basic
+    @Column(name = "I_ID_EMPLEADO_VENTA", nullable = false)
+    public Integer getiIdEmpleadoVenta() {
+        return iIdEmpleadoVenta;
+    }
+
+    public void setiIdEmpleadoVenta(Integer iIdEmpleadoVenta) {
+        this.iIdEmpleadoVenta = iIdEmpleadoVenta;
+    }
+
+    @Basic
+    @Column(name = "I_ID_EMPLEADO_CAJA", nullable = false)
+    public Integer getiIdEmpleadoCaja() {
+        return iIdEmpleadoCaja;
+    }
+
+    public void setiIdEmpleadoCaja(Integer iIdEmpleadoCaja) {
+        this.iIdEmpleadoCaja = iIdEmpleadoCaja;
     }
 
     @Basic
@@ -42,6 +70,11 @@ public class OrdenMostradorEntity {
         OrdenMostradorEntity that = (OrdenMostradorEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (iIdAlmacen != null ? !iIdAlmacen.equals(that.iIdAlmacen) : that.iIdAlmacen != null) return false;
+        if (iIdEmpleadoVenta != null ? !iIdEmpleadoVenta.equals(that.iIdEmpleadoVenta) : that.iIdEmpleadoVenta != null)
+            return false;
+        if (iIdEmpleadoCaja != null ? !iIdEmpleadoCaja.equals(that.iIdEmpleadoCaja) : that.iIdEmpleadoCaja != null)
+            return false;
         if (fAlta != null ? !fAlta.equals(that.fAlta) : that.fAlta != null) return false;
 
         return true;
@@ -50,46 +83,10 @@ public class OrdenMostradorEntity {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (iIdAlmacen != null ? iIdAlmacen.hashCode() : 0);
+        result = 31 * result + (iIdEmpleadoVenta != null ? iIdEmpleadoVenta.hashCode() : 0);
+        result = 31 * result + (iIdEmpleadoCaja != null ? iIdEmpleadoCaja.hashCode() : 0);
         result = 31 * result + (fAlta != null ? fAlta.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ALMACEN", referencedColumnName = "ID", nullable = false)
-    public AlmacenEntity getAlmacen() {
-        return almacen;
-    }
-
-    public void setAlmacen(AlmacenEntity almacen) {
-        this.almacen = almacen;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_EMPLEADO_VENTA", referencedColumnName = "ID", nullable = false)
-    public EmpleadoEntity getEmpleadoVenta() {
-        return empleadoVenta;
-    }
-
-    public void setEmpleadoVenta(EmpleadoEntity empleadoVenta) {
-        this.empleadoVenta = empleadoVenta;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_EMPLEADO_CAJA", referencedColumnName = "ID", nullable = false)
-    public EmpleadoEntity getEmpleadoCaja() {
-        return empleadoCaja;
-    }
-
-    public void setEmpleadoCaja(EmpleadoEntity empleadoCaja) {
-        this.empleadoCaja = empleadoCaja;
-    }
-
-    @OneToMany(mappedBy = "ordenMostrador")
-    public Collection<OrdenStockEntity> getOrdenStocks() {
-        return ordenStocks;
-    }
-
-    public void setOrdenStocks(Collection<OrdenStockEntity> ordenStocks) {
-        this.ordenStocks = ordenStocks;
     }
 }

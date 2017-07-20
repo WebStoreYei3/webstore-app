@@ -8,7 +8,7 @@ public class DireccionesEntregaEntity {
     private Integer id;
     private String cDireccion;
     private String cEntreCalles;
-    private UsuarioEntity usuario;
+    private Integer iIdUsuario;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -40,6 +40,16 @@ public class DireccionesEntregaEntity {
         this.cEntreCalles = cEntreCalles;
     }
 
+    @Basic
+    @Column(name = "I_ID_USUARIO", nullable = false)
+    public Integer getiIdUsuario() {
+        return iIdUsuario;
+    }
+
+    public void setiIdUsuario(Integer iIdUsuario) {
+        this.iIdUsuario = iIdUsuario;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +60,7 @@ public class DireccionesEntregaEntity {
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cDireccion != null ? !cDireccion.equals(that.cDireccion) : that.cDireccion != null) return false;
         if (cEntreCalles != null ? !cEntreCalles.equals(that.cEntreCalles) : that.cEntreCalles != null) return false;
+        if (iIdUsuario != null ? !iIdUsuario.equals(that.iIdUsuario) : that.iIdUsuario != null) return false;
 
         return true;
     }
@@ -59,16 +70,7 @@ public class DireccionesEntregaEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cDireccion != null ? cDireccion.hashCode() : 0);
         result = 31 * result + (cEntreCalles != null ? cEntreCalles.hashCode() : 0);
+        result = 31 * result + (iIdUsuario != null ? iIdUsuario.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_USUARIO", referencedColumnName = "ID", nullable = false)
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
     }
 }

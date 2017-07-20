@@ -1,7 +1,6 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "tipo_operacion", schema = "webstore", catalog = "")
@@ -9,7 +8,6 @@ public class TipoOperacionEntity {
     private Integer id;
     private String cCodigo;
     private String cDescripcion;
-    private Collection<OperacionAbmStockEntity> operacionesAbm;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -61,14 +59,5 @@ public class TipoOperacionEntity {
         result = 31 * result + (cCodigo != null ? cCodigo.hashCode() : 0);
         result = 31 * result + (cDescripcion != null ? cDescripcion.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "tipoOperacion")
-    public Collection<OperacionAbmStockEntity> getOperacionesAbm() {
-        return operacionesAbm;
-    }
-
-    public void setOperacionesAbm(Collection<OperacionAbmStockEntity> operacionesAbm) {
-        this.operacionesAbm = operacionesAbm;
     }
 }

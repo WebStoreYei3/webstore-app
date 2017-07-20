@@ -8,13 +8,12 @@ public class ProductoEntity {
     private Integer id;
     private String cCodigo;
     private String cNombre;
+    private Integer iIdTipo;
+    private Integer iIdSubtipo;
     private String cDescripcion;
+    private Integer iIdProveedor;
     private String cMarca;
     private String cUnidad;
-    private TipoProductoEntity tipoProducto;
-    private SubtipoProductoEntity subtipoProducto;
-    private ProveedorEntity proveedor;
-    private StockEntity stock;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -47,6 +46,26 @@ public class ProductoEntity {
     }
 
     @Basic
+    @Column(name = "I_ID_TIPO", nullable = false)
+    public Integer getiIdTipo() {
+        return iIdTipo;
+    }
+
+    public void setiIdTipo(Integer iIdTipo) {
+        this.iIdTipo = iIdTipo;
+    }
+
+    @Basic
+    @Column(name = "I_ID_SUBTIPO", nullable = true)
+    public Integer getiIdSubtipo() {
+        return iIdSubtipo;
+    }
+
+    public void setiIdSubtipo(Integer iIdSubtipo) {
+        this.iIdSubtipo = iIdSubtipo;
+    }
+
+    @Basic
     @Column(name = "C_DESCRIPCION", nullable = false, length = 255)
     public String getcDescripcion() {
         return cDescripcion;
@@ -54,6 +73,16 @@ public class ProductoEntity {
 
     public void setcDescripcion(String cDescripcion) {
         this.cDescripcion = cDescripcion;
+    }
+
+    @Basic
+    @Column(name = "I_ID_PROVEEDOR", nullable = false)
+    public Integer getiIdProveedor() {
+        return iIdProveedor;
+    }
+
+    public void setiIdProveedor(Integer iIdProveedor) {
+        this.iIdProveedor = iIdProveedor;
     }
 
     @Basic
@@ -86,7 +115,10 @@ public class ProductoEntity {
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cCodigo != null ? !cCodigo.equals(that.cCodigo) : that.cCodigo != null) return false;
         if (cNombre != null ? !cNombre.equals(that.cNombre) : that.cNombre != null) return false;
+        if (iIdTipo != null ? !iIdTipo.equals(that.iIdTipo) : that.iIdTipo != null) return false;
+        if (iIdSubtipo != null ? !iIdSubtipo.equals(that.iIdSubtipo) : that.iIdSubtipo != null) return false;
         if (cDescripcion != null ? !cDescripcion.equals(that.cDescripcion) : that.cDescripcion != null) return false;
+        if (iIdProveedor != null ? !iIdProveedor.equals(that.iIdProveedor) : that.iIdProveedor != null) return false;
         if (cMarca != null ? !cMarca.equals(that.cMarca) : that.cMarca != null) return false;
         if (cUnidad != null ? !cUnidad.equals(that.cUnidad) : that.cUnidad != null) return false;
 
@@ -98,48 +130,12 @@ public class ProductoEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cCodigo != null ? cCodigo.hashCode() : 0);
         result = 31 * result + (cNombre != null ? cNombre.hashCode() : 0);
+        result = 31 * result + (iIdTipo != null ? iIdTipo.hashCode() : 0);
+        result = 31 * result + (iIdSubtipo != null ? iIdSubtipo.hashCode() : 0);
         result = 31 * result + (cDescripcion != null ? cDescripcion.hashCode() : 0);
+        result = 31 * result + (iIdProveedor != null ? iIdProveedor.hashCode() : 0);
         result = 31 * result + (cMarca != null ? cMarca.hashCode() : 0);
         result = 31 * result + (cUnidad != null ? cUnidad.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_TIPO", referencedColumnName = "ID", nullable = false)
-    public TipoProductoEntity getTipoProducto() {
-        return tipoProducto;
-    }
-
-    public void setTipoProducto(TipoProductoEntity tipoProducto) {
-        this.tipoProducto = tipoProducto;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_SUBTIPO", referencedColumnName = "ID")
-    public SubtipoProductoEntity getSubtipoProducto() {
-        return subtipoProducto;
-    }
-
-    public void setSubtipoProducto(SubtipoProductoEntity subtipoProducto) {
-        this.subtipoProducto = subtipoProducto;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_PROVEEDOR", referencedColumnName = "ID", nullable = false)
-    public ProveedorEntity getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(ProveedorEntity proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    @OneToOne(mappedBy = "producto")
-    public StockEntity getStock() {
-        return stock;
-    }
-
-    public void setStock(StockEntity stock) {
-        this.stock = stock;
     }
 }

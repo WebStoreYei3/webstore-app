@@ -2,7 +2,6 @@ package com.gemobile.core.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 @Table(name = "usuario", schema = "webstore", catalog = "")
@@ -18,12 +17,9 @@ public class UsuarioEntity {
     private String cDireccion2;
     private Timestamp fMiembroDesde;
     private String cEstado;
+    private Integer iIdEstadoUsuario;
     private String cUsuario;
     private String cContrasenia;
-    private Collection<DireccionesEntregaEntity> direccionesEntregas;
-    private EmpleadoEntity empleado;
-    private Collection<OrdenEntregaEntity> ordenEntregas;
-    private EstadoUsuarioEntity estadoUsuario;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -136,6 +132,16 @@ public class UsuarioEntity {
     }
 
     @Basic
+    @Column(name = "I_ID_ESTADO_USUARIO", nullable = false)
+    public Integer getiIdEstadoUsuario() {
+        return iIdEstadoUsuario;
+    }
+
+    public void setiIdEstadoUsuario(Integer iIdEstadoUsuario) {
+        this.iIdEstadoUsuario = iIdEstadoUsuario;
+    }
+
+    @Basic
     @Column(name = "C_USUARIO", nullable = false, length = 45)
     public String getcUsuario() {
         return cUsuario;
@@ -174,6 +180,8 @@ public class UsuarioEntity {
         if (fMiembroDesde != null ? !fMiembroDesde.equals(that.fMiembroDesde) : that.fMiembroDesde != null)
             return false;
         if (cEstado != null ? !cEstado.equals(that.cEstado) : that.cEstado != null) return false;
+        if (iIdEstadoUsuario != null ? !iIdEstadoUsuario.equals(that.iIdEstadoUsuario) : that.iIdEstadoUsuario != null)
+            return false;
         if (cUsuario != null ? !cUsuario.equals(that.cUsuario) : that.cUsuario != null) return false;
         if (cContrasenia != null ? !cContrasenia.equals(that.cContrasenia) : that.cContrasenia != null) return false;
 
@@ -193,45 +201,9 @@ public class UsuarioEntity {
         result = 31 * result + (cDireccion2 != null ? cDireccion2.hashCode() : 0);
         result = 31 * result + (fMiembroDesde != null ? fMiembroDesde.hashCode() : 0);
         result = 31 * result + (cEstado != null ? cEstado.hashCode() : 0);
+        result = 31 * result + (iIdEstadoUsuario != null ? iIdEstadoUsuario.hashCode() : 0);
         result = 31 * result + (cUsuario != null ? cUsuario.hashCode() : 0);
         result = 31 * result + (cContrasenia != null ? cContrasenia.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "usuario")
-    public Collection<DireccionesEntregaEntity> getDireccionesEntregas() {
-        return direccionesEntregas;
-    }
-
-    public void setDireccionesEntregas(Collection<DireccionesEntregaEntity> direccionesEntregas) {
-        this.direccionesEntregas = direccionesEntregas;
-    }
-
-    @OneToOne(mappedBy = "usuario")
-    public EmpleadoEntity getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(EmpleadoEntity empleado) {
-        this.empleado = empleado;
-    }
-
-    @OneToMany(mappedBy = "usuarioByIIdUsuario")
-    public Collection<OrdenEntregaEntity> getOrdenEntregas() {
-        return ordenEntregas;
-    }
-
-    public void setOrdenEntregas(Collection<OrdenEntregaEntity> ordenEntregas) {
-        this.ordenEntregas = ordenEntregas;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ESTADO_USUARIO", referencedColumnName = "ID", nullable = false)
-    public EstadoUsuarioEntity getEstadoUsuario() {
-        return estadoUsuario;
-    }
-
-    public void setEstadoUsuario(EstadoUsuarioEntity estadoUsuario) {
-        this.estadoUsuario = estadoUsuario;
     }
 }

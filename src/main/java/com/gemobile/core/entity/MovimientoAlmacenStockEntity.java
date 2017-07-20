@@ -8,10 +8,10 @@ import java.sql.Timestamp;
 public class MovimientoAlmacenStockEntity {
     private Integer id;
     private Timestamp fMovimiento;
-    private StockEntity stock;
-    private AlmacenEntity almacenOrigen;
-    private AlmacenEntity almacenDestino;
-    private EmpleadoEntity empleado;
+    private Integer iIdStock;
+    private Integer iIdAlmacenOrigen;
+    private Integer iIdAlmacenDestino;
+    private Integer iIdEmpleado;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -33,6 +33,46 @@ public class MovimientoAlmacenStockEntity {
         this.fMovimiento = fMovimiento;
     }
 
+    @Basic
+    @Column(name = "I_ID_STOCK", nullable = false)
+    public Integer getiIdStock() {
+        return iIdStock;
+    }
+
+    public void setiIdStock(Integer iIdStock) {
+        this.iIdStock = iIdStock;
+    }
+
+    @Basic
+    @Column(name = "I_ID_ALMACEN_ORIGEN", nullable = false)
+    public Integer getiIdAlmacenOrigen() {
+        return iIdAlmacenOrigen;
+    }
+
+    public void setiIdAlmacenOrigen(Integer iIdAlmacenOrigen) {
+        this.iIdAlmacenOrigen = iIdAlmacenOrigen;
+    }
+
+    @Basic
+    @Column(name = "I_ID_ALMACEN_DESTINO", nullable = false)
+    public Integer getiIdAlmacenDestino() {
+        return iIdAlmacenDestino;
+    }
+
+    public void setiIdAlmacenDestino(Integer iIdAlmacenDestino) {
+        this.iIdAlmacenDestino = iIdAlmacenDestino;
+    }
+
+    @Basic
+    @Column(name = "I_ID_EMPLEADO", nullable = false)
+    public Integer getiIdEmpleado() {
+        return iIdEmpleado;
+    }
+
+    public void setiIdEmpleado(Integer iIdEmpleado) {
+        this.iIdEmpleado = iIdEmpleado;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,6 +82,12 @@ public class MovimientoAlmacenStockEntity {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (fMovimiento != null ? !fMovimiento.equals(that.fMovimiento) : that.fMovimiento != null) return false;
+        if (iIdStock != null ? !iIdStock.equals(that.iIdStock) : that.iIdStock != null) return false;
+        if (iIdAlmacenOrigen != null ? !iIdAlmacenOrigen.equals(that.iIdAlmacenOrigen) : that.iIdAlmacenOrigen != null)
+            return false;
+        if (iIdAlmacenDestino != null ? !iIdAlmacenDestino.equals(that.iIdAlmacenDestino) : that.iIdAlmacenDestino != null)
+            return false;
+        if (iIdEmpleado != null ? !iIdEmpleado.equals(that.iIdEmpleado) : that.iIdEmpleado != null) return false;
 
         return true;
     }
@@ -50,46 +96,10 @@ public class MovimientoAlmacenStockEntity {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (fMovimiento != null ? fMovimiento.hashCode() : 0);
+        result = 31 * result + (iIdStock != null ? iIdStock.hashCode() : 0);
+        result = 31 * result + (iIdAlmacenOrigen != null ? iIdAlmacenOrigen.hashCode() : 0);
+        result = 31 * result + (iIdAlmacenDestino != null ? iIdAlmacenDestino.hashCode() : 0);
+        result = 31 * result + (iIdEmpleado != null ? iIdEmpleado.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_STOCK", referencedColumnName = "I_ID_PRODUCTO", nullable = false)
-    public StockEntity getStock() {
-        return stock;
-    }
-
-    public void setStock(StockEntity stock) {
-        this.stock = stock;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ALMACEN_ORIGEN", referencedColumnName = "ID", nullable = false)
-    public AlmacenEntity getAlmacenOrigen() {
-        return almacenOrigen;
-    }
-
-    public void setAlmacenOrigen(AlmacenEntity almacenOrigen) {
-        this.almacenOrigen = almacenOrigen;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ALMACEN_DESTINO", referencedColumnName = "ID", nullable = false)
-    public AlmacenEntity getAlmacenDestino() {
-        return almacenDestino;
-    }
-
-    public void setAlmacenDestino(AlmacenEntity almacenDestino) {
-        this.almacenDestino = almacenDestino;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_EMPLEADO", referencedColumnName = "ID", nullable = false)
-    public EmpleadoEntity getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(EmpleadoEntity empleado) {
-        this.empleado = empleado;
     }
 }

@@ -1,7 +1,6 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "proveedor", schema = "webstore", catalog = "")
@@ -11,7 +10,6 @@ public class ProveedorEntity {
     private String cNombre;
     private String cContacto;
     private String cUbicacion;
-    private Collection<ProductoEntity> productos;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -87,14 +85,5 @@ public class ProveedorEntity {
         result = 31 * result + (cContacto != null ? cContacto.hashCode() : 0);
         result = 31 * result + (cUbicacion != null ? cUbicacion.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "proveedor")
-    public Collection<ProductoEntity> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(Collection<ProductoEntity> productos) {
-        this.productos = productos;
     }
 }

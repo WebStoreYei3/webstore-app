@@ -8,11 +8,11 @@ import java.sql.Timestamp;
 @Table(name = "operacion_abm_stock", schema = "webstore", catalog = "")
 public class OperacionAbmStockEntity {
     private Integer id;
+    private Integer iIdTipoOperacion;
     private Timestamp fOperacion;
+    private Integer iIdStock;
     private BigDecimal dCantidad;
-    private TipoOperacionEntity tipoOperacion;
-    private StockEntity stock;
-    private EmpleadoEntity empleado;
+    private Integer iIdEmpleado;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -22,6 +22,16 @@ public class OperacionAbmStockEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "I_ID_TIPO_OPERACION", nullable = false)
+    public Integer getiIdTipoOperacion() {
+        return iIdTipoOperacion;
+    }
+
+    public void setiIdTipoOperacion(Integer iIdTipoOperacion) {
+        this.iIdTipoOperacion = iIdTipoOperacion;
     }
 
     @Basic
@@ -35,6 +45,16 @@ public class OperacionAbmStockEntity {
     }
 
     @Basic
+    @Column(name = "I_ID_STOCK", nullable = false)
+    public Integer getiIdStock() {
+        return iIdStock;
+    }
+
+    public void setiIdStock(Integer iIdStock) {
+        this.iIdStock = iIdStock;
+    }
+
+    @Basic
     @Column(name = "D_CANTIDAD", nullable = false, precision = 3)
     public BigDecimal getdCantidad() {
         return dCantidad;
@@ -42,6 +62,16 @@ public class OperacionAbmStockEntity {
 
     public void setdCantidad(BigDecimal dCantidad) {
         this.dCantidad = dCantidad;
+    }
+
+    @Basic
+    @Column(name = "I_ID_EMPLEADO", nullable = false)
+    public Integer getiIdEmpleado() {
+        return iIdEmpleado;
+    }
+
+    public void setiIdEmpleado(Integer iIdEmpleado) {
+        this.iIdEmpleado = iIdEmpleado;
     }
 
     @Override
@@ -52,8 +82,12 @@ public class OperacionAbmStockEntity {
         OperacionAbmStockEntity that = (OperacionAbmStockEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (iIdTipoOperacion != null ? !iIdTipoOperacion.equals(that.iIdTipoOperacion) : that.iIdTipoOperacion != null)
+            return false;
         if (fOperacion != null ? !fOperacion.equals(that.fOperacion) : that.fOperacion != null) return false;
+        if (iIdStock != null ? !iIdStock.equals(that.iIdStock) : that.iIdStock != null) return false;
         if (dCantidad != null ? !dCantidad.equals(that.dCantidad) : that.dCantidad != null) return false;
+        if (iIdEmpleado != null ? !iIdEmpleado.equals(that.iIdEmpleado) : that.iIdEmpleado != null) return false;
 
         return true;
     }
@@ -61,38 +95,11 @@ public class OperacionAbmStockEntity {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (iIdTipoOperacion != null ? iIdTipoOperacion.hashCode() : 0);
         result = 31 * result + (fOperacion != null ? fOperacion.hashCode() : 0);
+        result = 31 * result + (iIdStock != null ? iIdStock.hashCode() : 0);
         result = 31 * result + (dCantidad != null ? dCantidad.hashCode() : 0);
+        result = 31 * result + (iIdEmpleado != null ? iIdEmpleado.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_TIPO_OPERACION", referencedColumnName = "ID", nullable = false)
-    public TipoOperacionEntity getTipoOperacion() {
-        return tipoOperacion;
-    }
-
-    public void setTipoOperacion(TipoOperacionEntity tipoOperacion) {
-        this.tipoOperacion = tipoOperacion;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_STOCK", referencedColumnName = "I_ID_PRODUCTO", nullable = false)
-    public StockEntity getStock() {
-        return stock;
-    }
-
-    public void setStock(StockEntity stock) {
-        this.stock = stock;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_EMPLEADO", referencedColumnName = "ID", nullable = false)
-    public EmpleadoEntity getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(EmpleadoEntity empleado) {
-        this.empleado = empleado;
     }
 }
