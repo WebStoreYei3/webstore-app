@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "rol", schema = "webstore", catalog = "")
-public class RolEntity {
+@Table(name = "estado_usuario", schema = "webstore", catalog = "")
+public class EstadoUsuarioEntity {
     private Integer id;
     private String cCodigo;
     private String cDescripcion;
-    private Collection<EmpleadoEntity> empleados;
+    private Collection<UsuarioEntity> usuarios;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -32,7 +32,7 @@ public class RolEntity {
     }
 
     @Basic
-    @Column(name = "C_DESCRIPCION", nullable = false, length = 255)
+    @Column(name = "C_DESCRIPCION", nullable = false, length = 100)
     public String getcDescripcion() {
         return cDescripcion;
     }
@@ -46,12 +46,11 @@ public class RolEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RolEntity rolEntity = (RolEntity) o;
+        EstadoUsuarioEntity that = (EstadoUsuarioEntity) o;
 
-        if (id != null ? !id.equals(rolEntity.id) : rolEntity.id != null) return false;
-        if (cCodigo != null ? !cCodigo.equals(rolEntity.cCodigo) : rolEntity.cCodigo != null) return false;
-        if (cDescripcion != null ? !cDescripcion.equals(rolEntity.cDescripcion) : rolEntity.cDescripcion != null)
-            return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (cCodigo != null ? !cCodigo.equals(that.cCodigo) : that.cCodigo != null) return false;
+        if (cDescripcion != null ? !cDescripcion.equals(that.cDescripcion) : that.cDescripcion != null) return false;
 
         return true;
     }
@@ -64,12 +63,12 @@ public class RolEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "rol")
-    public Collection<EmpleadoEntity> getEmpleados() {
-        return empleados;
+    @OneToMany(mappedBy = "estadoUsuario")
+    public Collection<UsuarioEntity> getUsuarios() {
+        return usuarios;
     }
 
-    public void setEmpleados(Collection<EmpleadoEntity> empleados) {
-        this.empleados = empleados;
+    public void setUsuarios(Collection<UsuarioEntity> usuarios) {
+        this.usuarios = usuarios;
     }
 }

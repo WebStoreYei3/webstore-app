@@ -1,12 +1,11 @@
 package com.gemobile.core.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
-@Table(name = "usuario", schema = "webstore", catalog = "")
-public class UsuarioEntity {
+@Table(name = "usuario_invitado", schema = "webstore", catalog = "")
+public class UsuarioInvitadoEntity {
     private Integer id;
     private String cNombre;
     private String cApepat;
@@ -16,14 +15,7 @@ public class UsuarioEntity {
     private String cCelular;
     private String cDireccion1;
     private String cDireccion2;
-    private Timestamp fMiembroDesde;
-    private String cEstado;
-    private String cUsuario;
-    private String cContrasenia;
-    private Collection<DireccionesEntregaEntity> direccionesEntregas;
-    private EmpleadoEntity empleado;
-    private Collection<OrdenEntregaEntity> ordenEntregas;
-    private EstadoUsuarioEntity estadoUsuario;
+    private Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitados;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -115,52 +107,12 @@ public class UsuarioEntity {
         this.cDireccion2 = cDireccion2;
     }
 
-    @Basic
-    @Column(name = "F_MIEMBRO_DESDE", nullable = false)
-    public Timestamp getfMiembroDesde() {
-        return fMiembroDesde;
-    }
-
-    public void setfMiembroDesde(Timestamp fMiembroDesde) {
-        this.fMiembroDesde = fMiembroDesde;
-    }
-
-    @Basic
-    @Column(name = "C_ESTADO", nullable = false, length = 45)
-    public String getcEstado() {
-        return cEstado;
-    }
-
-    public void setcEstado(String cEstado) {
-        this.cEstado = cEstado;
-    }
-
-    @Basic
-    @Column(name = "C_USUARIO", nullable = false, length = 45)
-    public String getcUsuario() {
-        return cUsuario;
-    }
-
-    public void setcUsuario(String cUsuario) {
-        this.cUsuario = cUsuario;
-    }
-
-    @Basic
-    @Column(name = "C_CONTRASENIA", nullable = false, length = 45)
-    public String getcContrasenia() {
-        return cContrasenia;
-    }
-
-    public void setcContrasenia(String cContrasenia) {
-        this.cContrasenia = cContrasenia;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsuarioEntity that = (UsuarioEntity) o;
+        UsuarioInvitadoEntity that = (UsuarioInvitadoEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (cNombre != null ? !cNombre.equals(that.cNombre) : that.cNombre != null) return false;
@@ -171,11 +123,6 @@ public class UsuarioEntity {
         if (cCelular != null ? !cCelular.equals(that.cCelular) : that.cCelular != null) return false;
         if (cDireccion1 != null ? !cDireccion1.equals(that.cDireccion1) : that.cDireccion1 != null) return false;
         if (cDireccion2 != null ? !cDireccion2.equals(that.cDireccion2) : that.cDireccion2 != null) return false;
-        if (fMiembroDesde != null ? !fMiembroDesde.equals(that.fMiembroDesde) : that.fMiembroDesde != null)
-            return false;
-        if (cEstado != null ? !cEstado.equals(that.cEstado) : that.cEstado != null) return false;
-        if (cUsuario != null ? !cUsuario.equals(that.cUsuario) : that.cUsuario != null) return false;
-        if (cContrasenia != null ? !cContrasenia.equals(that.cContrasenia) : that.cContrasenia != null) return false;
 
         return true;
     }
@@ -191,47 +138,15 @@ public class UsuarioEntity {
         result = 31 * result + (cCelular != null ? cCelular.hashCode() : 0);
         result = 31 * result + (cDireccion1 != null ? cDireccion1.hashCode() : 0);
         result = 31 * result + (cDireccion2 != null ? cDireccion2.hashCode() : 0);
-        result = 31 * result + (fMiembroDesde != null ? fMiembroDesde.hashCode() : 0);
-        result = 31 * result + (cEstado != null ? cEstado.hashCode() : 0);
-        result = 31 * result + (cUsuario != null ? cUsuario.hashCode() : 0);
-        result = 31 * result + (cContrasenia != null ? cContrasenia.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "usuario")
-    public Collection<DireccionesEntregaEntity> getDireccionesEntregas() {
-        return direccionesEntregas;
+    @OneToMany(mappedBy = "usuarioInvitado")
+    public Collection<OrdenEntregaInvitadoEntity> getOrdenesEntregaInvitados() {
+        return ordenesEntregaInvitados;
     }
 
-    public void setDireccionesEntregas(Collection<DireccionesEntregaEntity> direccionesEntregas) {
-        this.direccionesEntregas = direccionesEntregas;
-    }
-
-    @OneToOne(mappedBy = "usuario")
-    public EmpleadoEntity getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(EmpleadoEntity empleado) {
-        this.empleado = empleado;
-    }
-
-    @OneToMany(mappedBy = "usuarioByIIdUsuario")
-    public Collection<OrdenEntregaEntity> getOrdenEntregas() {
-        return ordenEntregas;
-    }
-
-    public void setOrdenEntregas(Collection<OrdenEntregaEntity> ordenEntregas) {
-        this.ordenEntregas = ordenEntregas;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "I_ID_ESTADO_USUARIO", referencedColumnName = "ID", nullable = false)
-    public EstadoUsuarioEntity getEstadoUsuario() {
-        return estadoUsuario;
-    }
-
-    public void setEstadoUsuario(EstadoUsuarioEntity estadoUsuario) {
-        this.estadoUsuario = estadoUsuario;
+    public void setOrdenesEntregaInvitados(Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitados) {
+        this.ordenesEntregaInvitados = ordenesEntregaInvitados;
     }
 }

@@ -11,8 +11,13 @@ public class AlmacenEntity {
     private String cUbicacion;
     private String cTelefono1;
     private String cTelefono2;
-    private EmpleadoEntity empleado;
-    private Collection<StockEntity> stocks;
+    private EmpleadoEntity empleadoResponsable;
+    private Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStockSalidas;
+    private Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStockEntrantes;
+    private Collection<OrdenEntregaEntity> ordenesEntrega;
+    private Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitado;
+    private Collection<OrdenMostradorEntity> ordenesMostrador;
+    private Collection<StockEntity> stocksById;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -92,20 +97,65 @@ public class AlmacenEntity {
 
     @ManyToOne
     @JoinColumn(name = "I_ID_EMPL_RESPONSABLE", referencedColumnName = "ID", nullable = false)
-    public EmpleadoEntity getEmpleado() {
-        return empleado;
+    public EmpleadoEntity getEmpleadoResponsable() {
+        return empleadoResponsable;
     }
 
-    public void setEmpleado(EmpleadoEntity empleado) {
-        this.empleado = empleado;
+    public void setEmpleadoResponsable(EmpleadoEntity empleadoResponsable) {
+        this.empleadoResponsable = empleadoResponsable;
+    }
+
+    @OneToMany(mappedBy = "almacenOrigen")
+    public Collection<MovimientoAlmacenStockEntity> getMovimientosAlmacenStockSalidas() {
+        return movimientosAlmacenStockSalidas;
+    }
+
+    public void setMovimientosAlmacenStockSalidas(Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStockSalidas) {
+        this.movimientosAlmacenStockSalidas = movimientosAlmacenStockSalidas;
+    }
+
+    @OneToMany(mappedBy = "almacenDestino")
+    public Collection<MovimientoAlmacenStockEntity> getMovimientosAlmacenStockEntrantes() {
+        return movimientosAlmacenStockEntrantes;
+    }
+
+    public void setMovimientosAlmacenStockEntrantes(Collection<MovimientoAlmacenStockEntity> movimientosAlmacenStockEntrantes) {
+        this.movimientosAlmacenStockEntrantes = movimientosAlmacenStockEntrantes;
     }
 
     @OneToMany(mappedBy = "almacen")
-    public Collection<StockEntity> getStocks() {
-        return stocks;
+    public Collection<OrdenEntregaEntity> getOrdenesEntrega() {
+        return ordenesEntrega;
     }
 
-    public void setStocks(Collection<StockEntity> stocks) {
-        this.stocks = stocks;
+    public void setOrdenesEntrega(Collection<OrdenEntregaEntity> ordenesEntrega) {
+        this.ordenesEntrega = ordenesEntrega;
+    }
+
+    @OneToMany(mappedBy = "almacen")
+    public Collection<OrdenEntregaInvitadoEntity> getOrdenesEntregaInvitado() {
+        return ordenesEntregaInvitado;
+    }
+
+    public void setOrdenesEntregaInvitado(Collection<OrdenEntregaInvitadoEntity> ordenesEntregaInvitado) {
+        this.ordenesEntregaInvitado = ordenesEntregaInvitado;
+    }
+
+    @OneToMany(mappedBy = "almacen")
+    public Collection<OrdenMostradorEntity> getOrdenesMostrador() {
+        return ordenesMostrador;
+    }
+
+    public void setOrdenesMostrador(Collection<OrdenMostradorEntity> ordenesMostrador) {
+        this.ordenesMostrador = ordenesMostrador;
+    }
+
+    @OneToMany(mappedBy = "almacen")
+    public Collection<StockEntity> getStocksById() {
+        return stocksById;
+    }
+
+    public void setStocksById(Collection<StockEntity> stocksById) {
+        this.stocksById = stocksById;
     }
 }
