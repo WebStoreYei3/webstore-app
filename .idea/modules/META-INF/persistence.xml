@@ -9,6 +9,19 @@
         <class>com.gemobile.core.entity.RolEntity</class>
         <class>com.gemobile.core.entity.StockEntity</class>
         <class>com.gemobile.core.entity.UsuarioEntity</class>
+        <class>com.gemobile.core.entity.EstadoOrdenEntity</class>
+        <class>com.gemobile.core.entity.EstadoUsuarioEntity</class>
+        <class>com.gemobile.core.entity.MovimientoAlmacenStockEntity</class>
+        <class>com.gemobile.core.entity.OperacionAbmStockEntity</class>
+        <class>com.gemobile.core.entity.OrdenEntregaEntity</class>
+        <class>com.gemobile.core.entity.OrdenEntregaInvitadoEntity</class>
+        <class>com.gemobile.core.entity.OrdenMostradorEntity</class>
+        <class>com.gemobile.core.entity.OrdenStockEntity</class>
+        <class>com.gemobile.core.entity.ProveedorEntity</class>
+        <class>com.gemobile.core.entity.SubtipoProductoEntity</class>
+        <class>com.gemobile.core.entity.TipoOperacionEntity</class>
+        <class>com.gemobile.core.entity.TipoProductoEntity</class>
+        <class>com.gemobile.core.entity.UsuarioInvitadoEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/webstore"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
