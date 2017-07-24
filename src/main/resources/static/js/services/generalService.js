@@ -1,5 +1,5 @@
 'use strict';
-angular.module('gem-app-final')
+angular.module('webstore-app')
   .factory('WorkspaceServ',function () {
     var WorkspaceServ = {work : function(){
       var aux = {};

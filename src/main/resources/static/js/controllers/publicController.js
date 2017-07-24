@@ -1,5 +1,5 @@
 'use strict';
-angular.module('gem-app-final')
+angular.module('webstore-app')
   .controller('PublicCtrl',function ($scope, $location,WorkspaceServ,$log) {
 
     $scope.name = sessionStorage.getItem('nombre');

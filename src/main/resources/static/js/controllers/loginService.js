@@ -1,4 +1,4 @@
-'use strict';
++'use strict';
 angular.module('webstore-app')
   .factory('LoginServ',function ($resource) {
     var auth = {

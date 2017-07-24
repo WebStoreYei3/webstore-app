@@ -5,19 +5,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-/**
- * Created by oscar on 22/12/2016.
- */
-public class CrunchifyJavaMailExample {
-    public static void main(String[] args)
-    {
-
-        SendAuthentication.Send();
-
-    }
-
-}
-
 class SendAuthentication
 {
 
