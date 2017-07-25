@@ -17,14 +17,14 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/../../src/main/java/com/gemobile/Runner.java</file>
+          <file>file://$MODULE_DIR$/../../src/main/java/com/webstore/Runner.java</file>
         </fileset>
       </configuration>
     </facet>
     <facet type="web" name="Web Gradle : webstore-app-1.0-SNAPSHOT.war">
       <configuration>
         <webroots>
-          <root url="file://D:\Oscar\Workspace\webstore-app\src\main\webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/../../src/main/webapp" relative="/" />
         </webroots>
       </configuration>
     </facet>
