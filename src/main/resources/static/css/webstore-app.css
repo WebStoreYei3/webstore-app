@@ -76,6 +76,7 @@ body {
   padding: 15px;
 }
 .sidebar ul li {
+  background-color: #060606;
   border-bottom: 1px solid #121212;
 }
 .sidebar ul li a.active {
