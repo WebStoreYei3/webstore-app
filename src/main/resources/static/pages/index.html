@@ -9,9 +9,9 @@
   <meta name="author" content="">
 
   <title>WebStore</title>
-  <link href="ico_09.png" rel="shortcut icon" type="image/x-icon">
+  <link href="ico_09Grande.png" rel="shortcut icon" type="image/x-icon">
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,30 +23,6 @@
 
   <link href="css/webstore-app.css" rel="stylesheet">
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-  <script src="bower_components/raphael/raphael.min.js"></script>
-  <script src="bower_components/morrisjs/morris.min.js"></script>
-  <script src="bower_components/angular-morris/build/module/angular-morris/angular-morris.min.js"></script>
-  <script src="bower_components/angular/angular-moment-picker.min.js"></script>
-  <script src="bower_components/angular-datatables/angular-datatables.min.js"></script>
-  <script src="bower_components/angular-datatables/plugins/scroller/angular-datatables.scroller.js"></script>
-  <script src="bower_components/angular-datatables/plugins/select/angular-datatables.select.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
-  <script src="bower_components/fusioncharts/fusioncharts.js"></script>
-  <script src="bower_components/fusioncharts/angular-fusioncharts.min.js"></script>
-
-  <script src="js/webstore-app.js"></script>
-  <script src="js/controllers/loginController.js"></script>
-  <script src="js/services/loginService.js"></script>
-  <script src="js/controllers/publicController.js"></script>
-  <script src="js/services/generalService.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,7 +43,7 @@
 
 <div id="wrapper" >
   <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #060606" >
+  <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0; background-color: #060606" >
     <div class="navbar-header" >
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -79,16 +55,15 @@
         <a >
           <img border="0"  src="ico_09Grande.png" width="40" height="40" style="margin-top: 4%">
         </a>
-        <a style="margin-top: 8%" >
+        <a style="margin-top: 10%" >
         <span style="color:#f9f9f9;">Web</span><font color="#D55534">Store</font>
         </a>
       </a>
     </div>
     <!-- /.navbar-header -->
-
     <ul class="nav navbar-top-links navbar-right">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle" data-toggle="dropdown" >
           <i class="fa fa-shopping-cart fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-messages">
@@ -128,7 +103,7 @@
       </li>
       <!-- /.dropdown -->
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-alerts">
@@ -188,13 +163,13 @@
       </li>
       <!-- /.dropdown -->
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-          <li><a href="#"><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
+          <li><a href=""><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
           </li>
-          <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
+          <li><a href=""><i class="fa fa-gear fa-fw"></i> Configuracion</a>
           </li>
           <li class="divider"></li>
           <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
@@ -205,116 +180,39 @@
       <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
-
-    <div class="navbar-default sidebar" role="navigation">
-      <div class="sidebar-nav navbar-collapse">
-        <ul class="nav in" id="side-menu">
-          <li class="sidebar-search">
-            <div class="input-group custom-search-form">
-              <input class="form-control" placeholder="Search..." type="text">
-              <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-            </div>
-            <!-- /input-group -->
-          </li>
-          <li>
-            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level collapse">
-              <li>
-                <a href="flot.html">Flot Charts</a>
-              </li>
-              <li>
-                <a href="morris.html">Morris.js Charts</a>
-              </li>
-            </ul>
-            <!-- /.nav-second-level -->
-          </li>
-          <li>
-            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-          </li>
-          <li>
-            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level collapse">
-              <li>
-                <a href="panels-wells.html">Panels and Wells</a>
-              </li>
-              <li>
-                <a href="buttons.html">Buttons</a>
-              </li>
-              <li>
-                <a href="notifications.html">Notifications</a>
-              </li>
-              <li>
-                <a href="typography.html">Typography</a>
-              </li>
-              <li>
-                <a href="icons.html"> Icons</a>
-              </li>
-              <li>
-                <a href="grid.html">Grid</a>
-              </li>
-            </ul>
-            <!-- /.nav-second-level -->
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level collapse">
-              <li>
-                <a href="#">Second Level Item</a>
-              </li>
-              <li>
-                <a href="#">Second Level Item</a>
-              </li>
-              <li>
-                <a href="#">Third Level <span class="fa arrow"></span></a>
-                <ul class="nav nav-third-level collapse">
-                  <li>
-                    <a href="#">Third Level Item</a>
-                  </li>
-                  <li>
-                    <a href="#">Third Level Item</a>
-                  </li>
-                  <li>
-                    <a href="#">Third Level Item</a>
-                  </li>
-                  <li>
-                    <a href="#">Third Level Item</a>
-                  </li>
-                </ul>
-                <!-- /.nav-third-level -->
-              </li>
-            </ul>
-            <!-- /.nav-second-level -->
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level collapse">
-              <li>
-                <a href="blank.html">Blank Page</a>
-              </li>
-              <li>
-                <a href="login.html">Login Page</a>
-              </li>
-            </ul>
-            <!-- /.nav-second-level -->
-          </li>
-        </ul>
-      </div>
-      <!-- /.sidebar-collapse -->
-    </div>
-    <!-- /.navbar-static-side -->
   </nav>
-  <div ng-view></div>
+  <div ng-view>
+
+  </div>
 </div>
+
+<script src="bower_components/jquery/dist/jquery.jsjquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morrisjs/morris.min.js"></script>
+<script src="bower_components/angular-morris/build/module/angular-morris/angular-morris.min.js"></script>
+<script src="bower_components/angular/angular-moment-picker.min.js"></script>
+<script src="bower_components/angular-datatables/angular-datatables.min.js"></script>
+<script src="bower_components/angular-datatables/plugins/scroller/angular-datatables.scroller.js"></script>
+<script src="bower_components/angular-datatables/plugins/select/angular-datatables.select.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+<script src="bower_components/fusioncharts/fusioncharts.js"></script>
+<script src="bower_components/fusioncharts/angular-fusioncharts.min.js"></script>
+
+<script src="js/webstore-app.js"></script>
+<script src="js/sb-admin-2.js"></script>
+<script src="js/controllers/loginController.js"></script>
+<script src="js/services/loginService.js"></script>
+<script src="js/controllers/publicController.js"></script>
+<script src="js/services/generalService.js"></script>
+
 </body>
 
 </html>
