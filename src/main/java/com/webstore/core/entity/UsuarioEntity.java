@@ -21,6 +21,39 @@ public class UsuarioEntity {
     private String cUsuario;
     private String cContrasenia;
 
+    public UsuarioEntity() {
+    }
+
+    public UsuarioEntity(Integer id,
+                         String cNombre,
+                         String cApepat,
+                         String cApemat,
+                         String cMail,
+                         String cTelefono,
+                         String cCelular,
+                         String cDireccion1,
+                         String cDireccion2,
+                         Timestamp fMiembroDesde,
+                         String cEstado,
+                         Integer iIdEstadoUsuario,
+                         String cUsuario,
+                         String cContrasenia) {
+        this.id = id;
+        this.cNombre = cNombre;
+        this.cApepat = cApepat;
+        this.cApemat = cApemat;
+        this.cMail = cMail;
+        this.cTelefono = cTelefono;
+        this.cCelular = cCelular;
+        this.cDireccion1 = cDireccion1;
+        this.cDireccion2 = cDireccion2;
+        this.fMiembroDesde = fMiembroDesde;
+        this.cEstado = cEstado;
+        this.iIdEstadoUsuario = iIdEstadoUsuario;
+        this.cUsuario = cUsuario;
+        this.cContrasenia = cContrasenia;
+    }
+
     @Id
     @Column(name = "ID", nullable = false)
     public Integer getId() {
