@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
+      <module name="test-integration_main" target="1.8" />
+      <module name="test-integration_test" target="1.8" />
       <module name="webstore-app_main" target="1.8" />
       <module name="webstore-app_test" target="1.8" />
     </bytecodeTargetLevel>

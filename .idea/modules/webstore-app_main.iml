@@ -24,7 +24,7 @@
     <facet type="web" name="Web Gradle : webstore-app-1.0-SNAPSHOT.war">
       <configuration>
         <webroots>
-          <root url="file://$MODULE_DIR$/../../src/main/resources" relative="/" />
+          <root url="file://D:\Oscar\Workspace\webstore-app\src\main\webapp" relative="/" />
         </webroots>
       </configuration>
     </facet>
@@ -40,9 +40,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-jpa:1.4.1.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-core:8.5.5" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.4.1.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:8.5.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-websocket:8.5.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.4.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: net.sourceforge.nekohtml:nekohtml:1.9.22" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-thymeleaf:1.4.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.hateoas:spring-hateoas:0.21.0.RELEASE" level="project" />
