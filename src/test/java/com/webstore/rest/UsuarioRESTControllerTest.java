@@ -72,5 +72,6 @@ public class UsuarioRESTControllerTest extends WebstoreUnitTest {
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.id", is("3")))
                 .andExpect(jsonPath("$.nombre", is(nombre)));
+        System.out.println("Terminado");
     }
 }
