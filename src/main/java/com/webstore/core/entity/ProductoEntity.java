@@ -1,5 +1,7 @@
 package com.webstore.core.entity;
 
+import org.springframework.util.StringUtils;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class ProductoEntity {
     private String cUnidad;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;
@@ -137,5 +140,9 @@ public class ProductoEntity {
         result = 31 * result + (cMarca != null ? cMarca.hashCode() : 0);
         result = 31 * result + (cUnidad != null ? cUnidad.hashCode() : 0);
         return result;
+    }
+
+    public boolean hasSubTipo(){
+        return !StringUtils.isEmpty(this.iIdSubtipo);
     }
 }

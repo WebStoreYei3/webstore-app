@@ -8,12 +8,13 @@ import java.sql.Timestamp;
 public class MovimientoAlmacenStockEntity {
     private Integer id;
     private Timestamp fMovimiento;
-    private Integer iIdStock;
+    private String cSkuStock;
     private Integer iIdAlmacenOrigen;
     private Integer iIdAlmacenDestino;
     private Integer iIdEmpleado;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;
@@ -34,13 +35,13 @@ public class MovimientoAlmacenStockEntity {
     }
 
     @Basic
-    @Column(name = "I_ID_STOCK", nullable = false)
-    public Integer getiIdStock() {
-        return iIdStock;
+    @Column(name = "C_SKU_STOCK", nullable = false, length = 50)
+    public String getcSkuStock() {
+        return cSkuStock;
     }
 
-    public void setiIdStock(Integer iIdStock) {
-        this.iIdStock = iIdStock;
+    public void setcSkuStock(String cSkuStock) {
+        this.cSkuStock = cSkuStock;
     }
 
     @Basic
@@ -82,7 +83,7 @@ public class MovimientoAlmacenStockEntity {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (fMovimiento != null ? !fMovimiento.equals(that.fMovimiento) : that.fMovimiento != null) return false;
-        if (iIdStock != null ? !iIdStock.equals(that.iIdStock) : that.iIdStock != null) return false;
+        if (cSkuStock != null ? !cSkuStock.equals(that.cSkuStock) : that.cSkuStock != null) return false;
         if (iIdAlmacenOrigen != null ? !iIdAlmacenOrigen.equals(that.iIdAlmacenOrigen) : that.iIdAlmacenOrigen != null)
             return false;
         if (iIdAlmacenDestino != null ? !iIdAlmacenDestino.equals(that.iIdAlmacenDestino) : that.iIdAlmacenDestino != null)
@@ -96,7 +97,7 @@ public class MovimientoAlmacenStockEntity {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (fMovimiento != null ? fMovimiento.hashCode() : 0);
-        result = 31 * result + (iIdStock != null ? iIdStock.hashCode() : 0);
+        result = 31 * result + (cSkuStock != null ? cSkuStock.hashCode() : 0);
         result = 31 * result + (iIdAlmacenOrigen != null ? iIdAlmacenOrigen.hashCode() : 0);
         result = 31 * result + (iIdAlmacenDestino != null ? iIdAlmacenDestino.hashCode() : 0);
         result = 31 * result + (iIdEmpleado != null ? iIdEmpleado.hashCode() : 0);

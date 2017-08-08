@@ -10,6 +10,7 @@ public class RolEntity {
     private String cDescripcion;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;

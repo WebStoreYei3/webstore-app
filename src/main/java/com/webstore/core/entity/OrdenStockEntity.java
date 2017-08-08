@@ -7,12 +7,13 @@ import java.math.BigDecimal;
 @Table(name = "orden_stock", schema = "webstore", catalog = "")
 public class OrdenStockEntity {
     private Integer id;
-    private Integer iIdStock;
+    private String cSkuStock;
     private BigDecimal dCantidad;
     private Integer iIdAlmacen;
     private Integer iIdOrdenEntrega;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;
@@ -23,13 +24,13 @@ public class OrdenStockEntity {
     }
 
     @Basic
-    @Column(name = "I_ID_STOCK", nullable = false)
-    public Integer getiIdStock() {
-        return iIdStock;
+    @Column(name = "C_SKU_STOCK", nullable = false, length = 50)
+    public String getcSkuStock() {
+        return cSkuStock;
     }
 
-    public void setiIdStock(Integer iIdStock) {
-        this.iIdStock = iIdStock;
+    public void setcSkuStock(String cSkuStock) {
+        this.cSkuStock = cSkuStock;
     }
 
     @Basic
@@ -70,7 +71,7 @@ public class OrdenStockEntity {
         OrdenStockEntity that = (OrdenStockEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (iIdStock != null ? !iIdStock.equals(that.iIdStock) : that.iIdStock != null) return false;
+        if (cSkuStock != null ? !cSkuStock.equals(that.cSkuStock) : that.cSkuStock != null) return false;
         if (dCantidad != null ? !dCantidad.equals(that.dCantidad) : that.dCantidad != null) return false;
         if (iIdAlmacen != null ? !iIdAlmacen.equals(that.iIdAlmacen) : that.iIdAlmacen != null) return false;
         if (iIdOrdenEntrega != null ? !iIdOrdenEntrega.equals(that.iIdOrdenEntrega) : that.iIdOrdenEntrega != null)
@@ -82,7 +83,7 @@ public class OrdenStockEntity {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (iIdStock != null ? iIdStock.hashCode() : 0);
+        result = 31 * result + (cSkuStock != null ? cSkuStock.hashCode() : 0);
         result = 31 * result + (dCantidad != null ? dCantidad.hashCode() : 0);
         result = 31 * result + (iIdAlmacen != null ? iIdAlmacen.hashCode() : 0);
         result = 31 * result + (iIdOrdenEntrega != null ? iIdOrdenEntrega.hashCode() : 0);

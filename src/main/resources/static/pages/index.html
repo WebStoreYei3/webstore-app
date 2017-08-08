@@ -14,7 +14,7 @@
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
-  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
   <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
   <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -62,7 +62,7 @@
     </div>
     <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
-      <li class="dropdown">
+      <li class="dropdown" ng-show="estaConectado()" >
         <a class="dropdown-toggle" data-toggle="dropdown" >
           <i class="fa fa-shopping-cart fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
@@ -102,7 +102,7 @@
       </li>
       </li>
       <!-- /.dropdown -->
-      <li class="dropdown">
+      <li class="dropdown" ng-show="estaConectado()" >
         <a class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
@@ -162,17 +162,25 @@
         <!-- /.dropdown-alerts -->
       </li>
       <!-- /.dropdown -->
+      <li class="divider">
+      </li>
+      <li ng-show="estaConectado()">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+          <span ng-cloak > Hola {{name}}!</span>
+        </a>
+      </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-          <li><a href=""><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
+          <li ng-hide="estaConectado()" ><a href="#/login/"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
+          <li ng-show="estaConectado()" ><a href=""><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
           </li>
-          <li><a href=""><i class="fa fa-gear fa-fw"></i> Configuracion</a>
+          <li ng-show="estaConectado()" ><a href=""><i class="fa fa-gear fa-fw"></i> Configuracion</a>
           </li>
-          <li class="divider"></li>
-          <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+          <li class="divider" ng-show="estaConectado()"></li>
+          <li ng-show="estaConectado()" ><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
           </li>
         </ul>
         <!-- /.dropdown-user -->
@@ -207,6 +215,7 @@
 
 <script src="js/webstore-app.js"></script>
 <script src="js/sb-admin-2.js"></script>
+<script src="js/controllers/loginController.js"></script>
 <script src="js/services/loginService.js"></script>
 <script src="js/controllers/publicController.js"></script>
 <script src="js/services/generalService.js"></script>

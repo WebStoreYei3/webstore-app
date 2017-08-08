@@ -18,6 +18,7 @@ public class UsuarioEntity {
     private Timestamp fMiembroDesde;
     private String cEstado;
     private Integer iIdEstadoUsuario;
+    private Timestamp fUltSesion;
     private String cUsuario;
     private String cContrasenia;
 
@@ -55,6 +56,7 @@ public class UsuarioEntity {
     }
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;
@@ -175,6 +177,16 @@ public class UsuarioEntity {
     }
 
     @Basic
+    @Column(name = "F_ULT_SESION", nullable = true)
+    public Timestamp getfUltSesion() {
+        return fUltSesion;
+    }
+
+    public void setfUltSesion(Timestamp fUltSesion) {
+        this.fUltSesion = fUltSesion;
+    }
+
+    @Basic
     @Column(name = "C_USUARIO", nullable = false, length = 45)
     public String getcUsuario() {
         return cUsuario;
@@ -215,10 +227,9 @@ public class UsuarioEntity {
         if (cEstado != null ? !cEstado.equals(that.cEstado) : that.cEstado != null) return false;
         if (iIdEstadoUsuario != null ? !iIdEstadoUsuario.equals(that.iIdEstadoUsuario) : that.iIdEstadoUsuario != null)
             return false;
+        if (fUltSesion != null ? !fUltSesion.equals(that.fUltSesion) : that.fUltSesion != null) return false;
         if (cUsuario != null ? !cUsuario.equals(that.cUsuario) : that.cUsuario != null) return false;
-        if (cContrasenia != null ? !cContrasenia.equals(that.cContrasenia) : that.cContrasenia != null) return false;
-
-        return true;
+        return cContrasenia != null ? cContrasenia.equals(that.cContrasenia) : that.cContrasenia == null;
     }
 
     @Override
@@ -235,6 +246,7 @@ public class UsuarioEntity {
         result = 31 * result + (fMiembroDesde != null ? fMiembroDesde.hashCode() : 0);
         result = 31 * result + (cEstado != null ? cEstado.hashCode() : 0);
         result = 31 * result + (iIdEstadoUsuario != null ? iIdEstadoUsuario.hashCode() : 0);
+        result = 31 * result + (fUltSesion != null ? fUltSesion.hashCode() : 0);
         result = 31 * result + (cUsuario != null ? cUsuario.hashCode() : 0);
         result = 31 * result + (cContrasenia != null ? cContrasenia.hashCode() : 0);
         return result;

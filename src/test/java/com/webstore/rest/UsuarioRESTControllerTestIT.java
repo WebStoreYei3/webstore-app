@@ -66,7 +66,7 @@ public class UsuarioRESTControllerTestIT {
                 createURLWithPort("/clienteLogin"),
                 HttpMethod.POST, entity, String.class);
 
-        ClienteLoginResponse clienteLoginResponse = new ClienteLoginResponse("4","strNumbreTest");
+        ClienteLoginResponse clienteLoginResponse = new ClienteLoginResponse("4","strNumbreTest","0");
         String expected = this.json(clienteLoginResponse);
 
         JSONAssert.assertEquals(expected, response.getBody(), false);

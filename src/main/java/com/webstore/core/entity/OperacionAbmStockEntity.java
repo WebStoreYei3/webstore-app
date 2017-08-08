@@ -10,11 +10,12 @@ public class OperacionAbmStockEntity {
     private Integer id;
     private Integer iIdTipoOperacion;
     private Timestamp fOperacion;
-    private Integer iIdStock;
+    private String cSkuStock;
     private BigDecimal dCantidad;
     private Integer iIdEmpleado;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;
@@ -45,13 +46,13 @@ public class OperacionAbmStockEntity {
     }
 
     @Basic
-    @Column(name = "I_ID_STOCK", nullable = false)
-    public Integer getiIdStock() {
-        return iIdStock;
+    @Column(name = "C_SKU_STOCK", nullable = false, length = 50)
+    public String getcSkuStock() {
+        return cSkuStock;
     }
 
-    public void setiIdStock(Integer iIdStock) {
-        this.iIdStock = iIdStock;
+    public void setcSkuStock(String cSkuStock) {
+        this.cSkuStock = cSkuStock;
     }
 
     @Basic
@@ -85,7 +86,7 @@ public class OperacionAbmStockEntity {
         if (iIdTipoOperacion != null ? !iIdTipoOperacion.equals(that.iIdTipoOperacion) : that.iIdTipoOperacion != null)
             return false;
         if (fOperacion != null ? !fOperacion.equals(that.fOperacion) : that.fOperacion != null) return false;
-        if (iIdStock != null ? !iIdStock.equals(that.iIdStock) : that.iIdStock != null) return false;
+        if (cSkuStock != null ? !cSkuStock.equals(that.cSkuStock) : that.cSkuStock != null) return false;
         if (dCantidad != null ? !dCantidad.equals(that.dCantidad) : that.dCantidad != null) return false;
         if (iIdEmpleado != null ? !iIdEmpleado.equals(that.iIdEmpleado) : that.iIdEmpleado != null) return false;
 
@@ -97,7 +98,7 @@ public class OperacionAbmStockEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (iIdTipoOperacion != null ? iIdTipoOperacion.hashCode() : 0);
         result = 31 * result + (fOperacion != null ? fOperacion.hashCode() : 0);
-        result = 31 * result + (iIdStock != null ? iIdStock.hashCode() : 0);
+        result = 31 * result + (cSkuStock != null ? cSkuStock.hashCode() : 0);
         result = 31 * result + (dCantidad != null ? dCantidad.hashCode() : 0);
         result = 31 * result + (iIdEmpleado != null ? iIdEmpleado.hashCode() : 0);
         return result;

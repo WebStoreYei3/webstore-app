@@ -13,6 +13,7 @@ public class AlmacenEntity {
     private String cTelefono2;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;

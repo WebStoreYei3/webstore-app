@@ -3,10 +3,12 @@ package com.webstore.rest.response;
 public class ClienteLoginResponse {
     private String id;
     private String nombre;
+    private String error;
 
-    public ClienteLoginResponse(String id, String nombre) {
+    public ClienteLoginResponse(String id, String nombre, String error) {
         this.id = id;
         this.nombre = nombre;
+        this.error = error;
     }
 
     public String getId() {
@@ -23,5 +25,13 @@ public class ClienteLoginResponse {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

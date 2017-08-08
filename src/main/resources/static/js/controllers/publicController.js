@@ -2,8 +2,9 @@
 angular.module('webstore-app')
   .controller('PublicCtrl',function ($scope, $location,WorkspaceServ,$log) {
 
-    $scope.name = sessionStorage.getItem('nombre');
+
     $scope.estaConectado = function() {
+      $scope.name = sessionStorage.getItem('nombre');
       if(sessionStorage.getItem('conectado')!='true'){
         return false;
       }else{

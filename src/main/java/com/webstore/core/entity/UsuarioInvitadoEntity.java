@@ -16,6 +16,7 @@ public class UsuarioInvitadoEntity {
     private String cDireccion2;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;

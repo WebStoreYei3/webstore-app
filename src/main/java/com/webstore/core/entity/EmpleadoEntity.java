@@ -11,6 +11,7 @@ public class EmpleadoEntity {
     private Integer iIdUsuario;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;

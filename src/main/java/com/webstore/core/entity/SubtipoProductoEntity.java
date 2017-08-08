@@ -11,6 +11,7 @@ public class SubtipoProductoEntity {
     private Integer iIdTipoProducto;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;

@@ -13,6 +13,7 @@ public class OrdenMostradorEntity {
     private Timestamp fAlta;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;
