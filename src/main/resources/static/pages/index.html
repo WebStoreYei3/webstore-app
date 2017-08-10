@@ -1,225 +1,170 @@
 <!DOCTYPE html >
-<html lang="es" ng-app = "webstore-app">
+<html lang="es" ng-app="webstore-app">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>WebStore</title>
-  <link href="ico_09Grande.png" rel="shortcut icon" type="image/x-icon">
+    <title>WebStore</title>
 
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <link href="ico_09Grande.png" rel="shortcut icon" type="image/x-icon">
 
-  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-  <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
-  <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="bower_components/angular/angular-moment-picker.min.css" rel="stylesheet" type="text/css">
-  <link href="bower_components/angular-datatables/css/angular-datatables.min.css" rel="stylesheet" type="text/css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
-  <link href="css/webstore-app.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/angular/angular-moment-picker.min.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/angular-datatables/css/angular-datatables.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/webstore-app.css" rel="stylesheet">
 
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-  <style type="text/css">
-    [ng\:cloak], [ng-cloak], .ng-cloak {
-      display: none !important;
-    }
-  </style>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="bower_components/raphael/raphael.min.js"></script>
+    <script src="bower_components/morrisjs/morris.min.js"></script>
+    <script src="bower_components/angular-morris/build/module/angular-morris/angular-morris.min.js"></script>
+    <script src="bower_components/angular/angular-moment-picker.min.js"></script>
+    <script src="bower_components/angular-datatables/angular-datatables.min.js"></script>
+    <script src="bower_components/angular-datatables/plugins/scroller/angular-datatables.scroller.js"></script>
+    <script src="bower_components/angular-datatables/plugins/select/angular-datatables.select.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+    <script src="bower_components/fusioncharts/fusioncharts.js"></script>
+    <script src="bower_components/fusioncharts/angular-fusioncharts.min.js"></script>
+
+    <script src="js/webstore-app.js"></script>
+    <script src="js/sb-admin-2.js"></script>
+    <script src="js/controllers/loginController.js"></script>
+    <script src="js/services/loginService.js"></script>
+    <script src="js/controllers/publicController.js"></script>
+    <script src="js/services/generalService.js"></script>
+    <script src="js/controllers/productoController.js"></script>
+    <script src="js/controllers/direccionController.js"></script>
+
+
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
 
 </head>
 
 <body ng-controller="PublicCtrl" ng-cloak class="ng-cloak">
 
-<div id="wrapper" >
-  <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0; background-color: #060606" >
-    <div class="navbar-header" >
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">
-        <a >
-          <img border="0"  src="ico_09Grande.png" width="40" height="40" style="margin-top: 4%">
-        </a>
-        <a style="margin-top: 10%" >
-        <span style="color:#f9f9f9;">Web</span><font color="#D55534">Store</font>
-        </a>
-      </a>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top " role="navigation"
+         style="margin-bottom: 0; background-color: #060606">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">
+                <a href="#/public/">
+                    <img border="0" src="ico_09Grande.png" width="40" height="40" style="margin-top: 4%">
+                </a>
+                <a style="margin-top: 10%">
+                    <span style="color:#f9f9f9;">Web</span><font color="#D55534">Store</font>
+                </a>
+            </a>
+        </div>
+        <div class="panel-heading col-md-3">
+        </div>
+        <div class="panel-heading col-md-4">
+
+            <div class="input-group custom-search-form">
+                <input class="form-control" placeholder="Buscar producto..." type="text">
+                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+            </div>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown" ng-show="estaConectado()">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-shopping-cart fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>(1x)Correa con broche metalico 1.20 metros para mascota perro</strong>
+                                <span class="pull-right text-muted">
+                                        <em>$59</em>
+                                    </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#/direccion/">
+                            <strong>Total: Cheack out</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            </li>
+            <!-- /.dropdown -->
+            <!-- /.dropdown -->
+            <li class="divider">
+            </li>
+            <li ng-show="estaConectado()">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <span ng-cloak> Hola {{name}}!</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li ng-hide="estaConectado()"><a href="#/login/"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
+                    <li ng-show="estaConectado()"><a href=""><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
+                    </li>
+                    <li ng-show="estaConectado()"><a href=""><i class="fa fa-gear fa-fw"></i> Configuracion</a>
+                    </li>
+                    <li class="divider" ng-show="estaConectado()"></li>
+                    <li ng-show="estaConectado()"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar
+                        Sesión</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+    </nav>
+    <div ng-view>
     </div>
-    <!-- /.navbar-header -->
-    <ul class="nav navbar-top-links navbar-right">
-      <li class="dropdown" ng-show="estaConectado()" >
-        <a class="dropdown-toggle" data-toggle="dropdown" >
-          <i class="fa fa-shopping-cart fa-fw"></i> <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-messages">
-          <li>
-            <a href="#">
-              <div>
-                <strong>Producto 1</strong>
-                <span class="pull-right text-muted">
-                                        <em>$10</em>
-                                    </span>
-              </div>
-              <div>Descripcion 1</div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#">
-              <div>
-                <strong>Producto 2</strong>
-                <span class="pull-right text-muted">
-                                        <em>$20</em>
-                                    </span>
-              </div>
-              <div>Descripcion 2</div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a class="text-center" href="#">
-              <strong>Total: Cheack out</strong>
-              <i class="fa fa-angle-right"></i>
-            </a>
-          </li>
-        </ul>
-        <!-- /.dropdown-messages -->
-      </li>
-      </li>
-      <!-- /.dropdown -->
-      <li class="dropdown" ng-show="estaConectado()" >
-        <a class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-alerts">
-          <li>
-            <a href="#">
-              <div>
-                <i class="fa fa-comment fa-fw"></i> New Comment
-                <span class="pull-right text-muted small">4 minutes ago</span>
-              </div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#">
-              <div>
-                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                <span class="pull-right text-muted small">12 minutes ago</span>
-              </div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#">
-              <div>
-                <i class="fa fa-shopping-cart fa-fw"></i> Message Sent
-                <span class="pull-right text-muted small">4 minutes ago</span>
-              </div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#">
-              <div>
-                <i class="fa fa-tasks fa-fw"></i> New Task
-                <span class="pull-right text-muted small">4 minutes ago</span>
-              </div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#">
-              <div>
-                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                <span class="pull-right text-muted small">4 minutes ago</span>
-              </div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a class="text-center" href="#">
-              <strong>See All Alerts</strong>
-              <i class="fa fa-angle-right"></i>
-            </a>
-          </li>
-        </ul>
-        <!-- /.dropdown-alerts -->
-      </li>
-      <!-- /.dropdown -->
-      <li class="divider">
-      </li>
-      <li ng-show="estaConectado()">
-        <a class="dropdown-toggle" data-toggle="dropdown">
-          <span ng-cloak > Hola {{name}}!</span>
-        </a>
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-user">
-          <li ng-hide="estaConectado()" ><a href="#/login/"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
-          <li ng-show="estaConectado()" ><a href=""><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
-          </li>
-          <li ng-show="estaConectado()" ><a href=""><i class="fa fa-gear fa-fw"></i> Configuracion</a>
-          </li>
-          <li class="divider" ng-show="estaConectado()"></li>
-          <li ng-show="estaConectado()" ><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
-          </li>
-        </ul>
-        <!-- /.dropdown-user -->
-      </li>
-      <!-- /.dropdown -->
-    </ul>
-    <!-- /.navbar-top-links -->
-  </nav>
-  <div ng-view>
-
-  </div>
 </div>
-
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-<script src="bower_components/raphael/raphael.min.js"></script>
-<script src="bower_components/morrisjs/morris.min.js"></script>
-<script src="bower_components/angular-morris/build/module/angular-morris/angular-morris.min.js"></script>
-<script src="bower_components/angular/angular-moment-picker.min.js"></script>
-<script src="bower_components/angular-datatables/angular-datatables.min.js"></script>
-<script src="bower_components/angular-datatables/plugins/scroller/angular-datatables.scroller.js"></script>
-<script src="bower_components/angular-datatables/plugins/select/angular-datatables.select.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
-<script src="bower_components/fusioncharts/fusioncharts.js"></script>
-<script src="bower_components/fusioncharts/angular-fusioncharts.min.js"></script>
-
-<script src="js/webstore-app.js"></script>
-<script src="js/sb-admin-2.js"></script>
-<script src="js/controllers/loginController.js"></script>
-<script src="js/services/loginService.js"></script>
-<script src="js/controllers/publicController.js"></script>
-<script src="js/services/generalService.js"></script>
-
 </body>
 
 </html>

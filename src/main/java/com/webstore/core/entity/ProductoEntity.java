@@ -1,11 +1,11 @@
 package com.webstore.core.entity;
 
-import org.springframework.util.StringUtils;
-
+import javax.annotation.Generated;
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "producto", schema = "webstore", catalog = "")
+@Table(name = "producto", schema = "webstore")
 public class ProductoEntity {
     private Integer id;
     private String cCodigo;
@@ -16,6 +16,43 @@ public class ProductoEntity {
     private Integer iIdProveedor;
     private String cMarca;
     private String cUnidad;
+    private BigDecimal dCosto;
+    private BigDecimal dPrecioPublico;
+    private BigDecimal dPrecioMayoreo;
+    private BigDecimal dCantidadMayoreo;
+    private String cImagenes;
+
+    public ProductoEntity() {
+    }
+
+    public ProductoEntity(
+                            String cCodigo,
+                            String cNombre,
+                            Integer iIdTipo,
+                            Integer iIdSubtipo,
+                            String cDescripcion,
+                            Integer iIdProveedor,
+                            String cMarca,
+                            String cUnidad,
+                            BigDecimal dCosto,
+                            BigDecimal dPrecioPublico,
+                            BigDecimal dPrecioMayoreo,
+                            BigDecimal dCantidadMayoreo,
+                            String cImagenes) {
+        this.cCodigo = cCodigo;
+        this.cNombre = cNombre;
+        this.iIdTipo = iIdTipo;
+        this.iIdSubtipo = iIdSubtipo;
+        this.cDescripcion = cDescripcion;
+        this.iIdProveedor = iIdProveedor;
+        this.cMarca = cMarca;
+        this.cUnidad = cUnidad;
+        this.dCosto = dCosto;
+        this.dPrecioPublico = dPrecioPublico;
+        this.dPrecioMayoreo = dPrecioMayoreo;
+        this.dCantidadMayoreo = dCantidadMayoreo;
+        this.cImagenes = cImagenes;
+    }
 
     @Id
     @GeneratedValue
@@ -108,6 +145,56 @@ public class ProductoEntity {
         this.cUnidad = cUnidad;
     }
 
+    @Basic
+    @Column(name = "D_COSTO", nullable = false, precision = 2)
+    public BigDecimal getdCosto() {
+        return dCosto;
+    }
+
+    public void setdCosto(BigDecimal dCosto) {
+        this.dCosto = dCosto;
+    }
+
+    @Basic
+    @Column(name = "D_PRECIO_PUBLICO", nullable = false, precision = 2)
+    public BigDecimal getdPrecioPublico() {
+        return dPrecioPublico;
+    }
+
+    public void setdPrecioPublico(BigDecimal dPrecioPublico) {
+        this.dPrecioPublico = dPrecioPublico;
+    }
+
+    @Basic
+    @Column(name = "D_PRECIO_MAYOREO", nullable = true, precision = 2)
+    public BigDecimal getdPrecioMayoreo() {
+        return dPrecioMayoreo;
+    }
+
+    public void setdPrecioMayoreo(BigDecimal dPrecioMayoreo) {
+        this.dPrecioMayoreo = dPrecioMayoreo;
+    }
+
+    @Basic
+    @Column(name = "D_CANTIDAD MAYOREO", nullable = true, precision = 3)
+    public BigDecimal getdCantidadMayoreo() {
+        return dCantidadMayoreo;
+    }
+
+    public void setdCantidadMayoreo(BigDecimal dCantidadMayoreo) {
+        this.dCantidadMayoreo = dCantidadMayoreo;
+    }
+
+    @Basic
+    @Column(name = "C_IMAGENES", nullable = true, length = -1)
+    public String getcImagenes() {
+        return cImagenes;
+    }
+
+    public void setcImagenes(String cImagenes) {
+        this.cImagenes = cImagenes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,6 +211,14 @@ public class ProductoEntity {
         if (iIdProveedor != null ? !iIdProveedor.equals(that.iIdProveedor) : that.iIdProveedor != null) return false;
         if (cMarca != null ? !cMarca.equals(that.cMarca) : that.cMarca != null) return false;
         if (cUnidad != null ? !cUnidad.equals(that.cUnidad) : that.cUnidad != null) return false;
+        if (dCosto != null ? !dCosto.equals(that.dCosto) : that.dCosto != null) return false;
+        if (dPrecioPublico != null ? !dPrecioPublico.equals(that.dPrecioPublico) : that.dPrecioPublico != null)
+            return false;
+        if (dPrecioMayoreo != null ? !dPrecioMayoreo.equals(that.dPrecioMayoreo) : that.dPrecioMayoreo != null)
+            return false;
+        if (dCantidadMayoreo != null ? !dCantidadMayoreo.equals(that.dCantidadMayoreo) : that.dCantidadMayoreo != null)
+            return false;
+        if (cImagenes != null ? !cImagenes.equals(that.cImagenes) : that.cImagenes != null) return false;
 
         return true;
     }
@@ -139,10 +234,15 @@ public class ProductoEntity {
         result = 31 * result + (iIdProveedor != null ? iIdProveedor.hashCode() : 0);
         result = 31 * result + (cMarca != null ? cMarca.hashCode() : 0);
         result = 31 * result + (cUnidad != null ? cUnidad.hashCode() : 0);
+        result = 31 * result + (dCosto != null ? dCosto.hashCode() : 0);
+        result = 31 * result + (dPrecioPublico != null ? dPrecioPublico.hashCode() : 0);
+        result = 31 * result + (dPrecioMayoreo != null ? dPrecioMayoreo.hashCode() : 0);
+        result = 31 * result + (dCantidadMayoreo != null ? dCantidadMayoreo.hashCode() : 0);
+        result = 31 * result + (cImagenes != null ? cImagenes.hashCode() : 0);
         return result;
     }
 
-    public boolean hasSubTipo(){
-        return !StringUtils.isEmpty(this.iIdSubtipo);
+    public boolean hasSubTipo() {
+        return this.getiIdSubtipo()!=null;
     }
 }

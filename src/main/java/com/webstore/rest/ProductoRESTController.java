@@ -2,11 +2,11 @@ package com.webstore.rest;
 
 import com.webstore.core.business.ProductoBusiness;
 import com.webstore.rest.request.ProductoRequest;
+import com.webstore.rest.response.ProductoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController (value = "producto")
 public class ProductoRESTController {
@@ -22,6 +22,11 @@ public class ProductoRESTController {
     @RequestMapping (value="/altaProducto", method = RequestMethod.POST)
     public void altaProducto(@RequestBody ProductoRequest productoRequest){
         productoBusiness.altaProducto(productoRequest);
+    }
+
+    @RequestMapping (value="/obtenerProductos", method = RequestMethod.GET)
+    public List<ProductoResponse> obtenerProductos(Integer cantidad){
+        return productoBusiness.obtenerProductos(cantidad);
     }
 
 }

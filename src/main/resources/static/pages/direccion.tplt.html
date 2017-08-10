@@ -1,0 +1,159 @@
+<div class="col-lg-2">
+</div>
+<div class="col-lg-8">
+    <div class="col-md-12">
+        <h1 style="color:#d55534;"> Por favor, escribe la dirección donde se entregará tu orden
+        </h1>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-9">
+        <input class="form-control" placeholder="Escriba su calle número y colonia" type="text" id="location-text-box">
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary " type="button" ng-click="aplicar()">Aplicar</button>
+    </div>
+</div>
+<div class="col-lg-2">
+</div>
+<div class="col-lg-12">
+    <br>
+</div>
+<div class="col-lg-2">
+</div>
+<div class="col-lg-8">
+    <div class="col-md-12">
+        <div id="map-canvas" style="height: 354px; width:100%;"></div>
+    </div>
+</div>
+<script>
+    var map;
+    var marker;
+    var geocoder;
+
+    function initialize() {
+        var mapOptions = {
+            zoom: 20
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        // Get GEOLOCATION
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude);
+
+                map.setCenter(pos);
+                marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    draggable: true
+                });
+            }, function () {
+                handleNoGeolocation(true);
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleNoGeolocation(false);
+        }
+
+        function handleNoGeolocation(errorFlag) {
+            if (errorFlag) {
+                var content = 'Error: The Geolocation service failed.';
+            } else {
+                var content = 'Error: Your browser doesn\'t support geolocation.';
+            }
+
+            var options = {
+                map: map,
+                position: new google.maps.LatLng(60, 105),
+                content: content
+            };
+
+            map.setCenter(options.position);
+            marker = new google.maps.Marker({
+                position: options.position,
+                map: map,
+                draggable: true
+            });
+
+        }
+
+        // get places auto-complete when user type in location-text-box
+        var input = /** @type {HTMLInputElement} */
+            (
+                document.getElementById('location-text-box'));
+
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29),
+            draggable: true
+        });
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(20); // Why 17? Because it looks good.
+            }
+            map.setCenter(place.geometry.location);
+            marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                draggable: true
+            });
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''), (place.address_components[1] && place.address_components[1].short_name || ''), (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+        });
+
+        geocoder = new google.maps.Geocoder();
+        google.maps.event.addListener(map, 'click', function (event) {
+            geocoder.geocode({
+                'latLng': event.latLng
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        marker.setVisible(false);
+                        document.getElementById('location-text-box').value = results[0].formatted_address;
+                        map.setCenter(event.latLng);
+                        marker = new google.maps.Marker({
+                            position: event.latLng,
+                            map: map,
+                            draggable: true
+                        });
+                    }
+                }
+            });
+        });
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+   
+<script async defer
+           
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJNJz1MCfCxDWxG4tMrHnjYcXyH-6UPU0&libraries=geometry,places&callback=initialize">
+</script>
+   

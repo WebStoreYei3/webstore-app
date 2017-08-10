@@ -1,8 +1,8 @@
-package com.webstore.rest.request;
+package com.webstore.rest.response;
 
 import java.math.BigDecimal;
 
-public class ProductoRequest {
+public class ProductoResponse {
     private Integer id;
     private String cCodigo;
     private String cNombre;
@@ -18,7 +18,7 @@ public class ProductoRequest {
     private BigDecimal dCantidadMayoreo;
     private String cImagenes;
 
-    public ProductoRequest(
+    public ProductoResponse(Integer id,
                             String cCodigo,
                             String cNombre,
                             Integer iIdTipo,
@@ -32,6 +32,7 @@ public class ProductoRequest {
                             BigDecimal dPrecioMayoreo,
                             BigDecimal dCantidadMayoreo,
                             String cImagenes) {
+        this.id = id;
         this.cCodigo = cCodigo;
         this.cNombre = cNombre;
         this.iIdTipo = iIdTipo;
@@ -45,6 +46,14 @@ public class ProductoRequest {
         this.dPrecioMayoreo = dPrecioMayoreo;
         this.dCantidadMayoreo = dCantidadMayoreo;
         this.cImagenes = cImagenes;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getcCodigo() {
@@ -150,4 +159,5 @@ public class ProductoRequest {
     public void setcImagenes(String cImagenes) {
         this.cImagenes = cImagenes;
     }
+
 }
