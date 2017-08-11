@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @Component
 public class ProductoBusiness{
@@ -27,11 +28,15 @@ public class ProductoBusiness{
     }
 
     public List<ProductoResponse> obtenerProductos(Integer cantidad){
-        List<ProductoResponse> result = new ArrayList<ProductoResponse>();
+        List<ProductoResponse> result = new ArrayList<>();
         for(ProductoEntity productoEntity:productoRepository.findProductosLimit(cantidad)){
             result.add(getProductoResponse(productoEntity));
         }
         return result;
+    }
+
+    public ProductoResponse obtenerProductoById(Integer id){
+        return getProductoResponse(productoRepository.findOne(id));
     }
 
     public static ProductoResponse getProductoResponse(ProductoEntity productoEntity){
@@ -49,7 +54,7 @@ public class ProductoBusiness{
                 productoEntity.getdPrecioPublico(),
                 productoEntity.getdPrecioMayoreo(),
                 productoEntity.getdCantidadMayoreo(),
-                productoEntity.getcImagenes()
+                obtenerLinksImagenes(productoEntity.getcImagenes())
         );
     }
 
@@ -69,6 +74,15 @@ public class ProductoBusiness{
                 productoRequest.getdCantidadMayoreo(),
                 productoRequest.getcImagenes()
         );
+    }
+
+    public static List<String> obtenerLinksImagenes(String cadena){
+        List<String> result = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(cadena,";");
+        while (st.hasMoreTokens()) {
+            result.add(st.nextToken());
+        }
+        return result;
     }
 }
 

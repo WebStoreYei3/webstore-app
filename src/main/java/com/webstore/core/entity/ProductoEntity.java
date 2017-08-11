@@ -176,7 +176,7 @@ public class ProductoEntity {
     }
 
     @Basic
-    @Column(name = "D_CANTIDAD MAYOREO", nullable = true, precision = 3)
+    @Column(name = "D_CANTIDAD_MAYOREO", nullable = true, precision = 3)
     public BigDecimal getdCantidadMayoreo() {
         return dCantidadMayoreo;
     }

@@ -23,6 +23,7 @@
         <class>com.gemobile.core.entity.TipoProductoEntity</class>
         <class>com.gemobile.core.entity.UsuarioInvitadoEntity</class>
         <class>com.webstore.core.entity.OperacionAbmStockEntity</class>
+        <class>com.webstore.core.entity.OpinionEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/webstore"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>

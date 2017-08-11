@@ -59,7 +59,7 @@ angular.module('webstore-app', ['ngRoute', 'ngAnimate', 'ngResource', 'ngCookies
                 templateUrl: 'pages/login.tplt.html',
                 controller: 'LoginCtrl'
             })
-            .when('/producto', {
+            .when('/producto/:id', {
                 templateUrl: 'pages/producto.tplt.html',
                 controller: 'ProductoCtrl'
             })
