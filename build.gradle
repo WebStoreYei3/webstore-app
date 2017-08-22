@@ -5,6 +5,9 @@ buildscript {
 	repositories {
 		jcenter()
 		mavenCentral()
+		flatDir {
+			dirs 'libs'
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -18,7 +21,7 @@ apply plugin: 'idea'
 apply plugin: 'war'
 
 jar {
-	baseName = 'gemapp'
+	baseName = 'webstore'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -26,6 +29,11 @@ targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	flatDir {
+		dirs 'libs'
+	}
+
+
 }
 
 
@@ -43,6 +51,8 @@ dependencies {
 		exclude module:'spring-boot-starter-tomcat'
 		exclude module:'spring-boot-legacy'
 	}
+	compile('org.codehaus.jettison:jettison:1.3.8')
+	compile fileTree(dir: 'lib', include: ['*.jar'])
 	providedRuntime('org.springframework.boot:spring-boot-legacy:1.0.2.RELEASE')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	providedRuntime('javax.servlet:jstl:1.2')

@@ -1,9 +1,7 @@
 package com.webstore.core.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,7 +14,8 @@ public class OpinionEntity {
     private Integer iPuntuacion;
     private Timestamp fAlta;
 
-    @Basic
+    @Id
+    @GeneratedValue
     @Column(name = "ID", nullable = false)
     public Integer getId() {
         return id;

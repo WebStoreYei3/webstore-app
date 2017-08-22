@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" >
+    <meta name="viewport" content="width=device-width">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -21,15 +21,13 @@
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="bower_components/angular/angular-moment-picker.min.css" rel="stylesheet" type="text/css">
     <link href="bower_components/angular-datatables/css/angular-datatables.min.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/ui-carousel-master/dist/ui-carousel.css" rel="stylesheet" type="text/css">
     <link href="css/webstore-app.css" rel="stylesheet">
 
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -49,7 +47,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
     <script src="bower_components/fusioncharts/fusioncharts.js"></script>
     <script src="bower_components/fusioncharts/angular-fusioncharts.min.js"></script>
-    <script src="bower_components/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="bower_components/ui-carousel-master/dist/ui-carousel.js"></script>
 
     <script src="js/webstore-app.js"></script>
     <script src="js/sb-admin-2.js"></script>
@@ -60,17 +58,14 @@
     <script src="js/controllers/productoController.js"></script>
     <script src="js/services/productoService.js"></script>
     <script src="js/controllers/direccionController.js"></script>
+    <script src="js/controllers/checkOutController.js"></script>
+    <script src="js/services/checkOutService.js"></script>
+    <script src="js/services/publicService.js"></script>
 
-
-    <style type="text/css">
-        [ng\:cloak], [ng-cloak], .ng-cloak {
-            display: none !important;
-        }
-    </style>
 
 </head>
 
-<body ng-controller="PublicCtrl" ng-cloak class="ng-cloak">
+<body ng-controller="PublicCtrl">
 
 <div id="wrapper">
     <!-- Navigation -->
@@ -107,25 +102,25 @@
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown" ng-show="estaConectado()">
+            <li class="dropdown" >
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-shopping-cart fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    <li>
-                        <a href="#">
+                    <li ng-repeat="it in productos">
+                        <a>
                             <div>
-                                <strong>(1x)Correa con broche metalico 1.20 metros para mascota perro</strong>
+                                <strong>({{it.cantidadProducto}}x){{it.cNombre}}</strong>
                                 <span class="pull-right text-muted">
-                                        <em>$59</em>
+                                        <em>${{it.dPrecioPublico}}</em>
                                     </span>
                             </div>
                         </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a class="text-center" href="#/direccion/">
-                            <strong>Total: Cheack out</strong>
+                        <a class="text-center" href="#/direccion/" ng-show="total!==null">
+                            <strong>Total: ${{total}} Cheack out</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </li>

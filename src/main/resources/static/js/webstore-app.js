@@ -1,5 +1,5 @@
 'use strict';
-angular.module('webstore-app', ['ngRoute', 'ngAnimate', 'ngResource', 'ngCookies', 'moment-picker', 'datatables', 'datatables.scroller', 'datatables.select', 'angular.morris', 'ng-fusioncharts'])
+angular.module('webstore-app', ['ngRoute', 'ngAnimate', 'ngResource', 'ngCookies', 'moment-picker', 'datatables', 'datatables.scroller', 'datatables.select', 'angular.morris', 'ng-fusioncharts','ui.carousel'])
     .run(function ($rootScope, $location) {
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             if (sessionStorage.length != 3) {
@@ -69,7 +69,7 @@ angular.module('webstore-app', ['ngRoute', 'ngAnimate', 'ngResource', 'ngCookies
             })
             .when('/cheackout', {
                 templateUrl: 'pages/cheackout.tplt.html',
-                controller: ''
+                controller: 'CheckOutCtrl'
             })
             .otherwise({
                 redirectTo: '/'

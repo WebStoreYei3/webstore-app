@@ -1,44 +1,67 @@
 <div class="col-lg-2">
 </div>
 <div class="col-lg-8">
-  <div class="row carousel-holder">
-
-    <div class="col-md-12">
-      <h1 style="color:#d55534;" >{{producto.cNombre}}
-        <br>
-        <small style="color:#be8511;" >${{producto.dPrecioPublico}}</small>
-      </h1>
-      <button class="btn btn-primary btn-lg" type="button" ng-click="comprar()">Comprar</button>
-      <button class="btn btn-outline btn-primary btn-lg" type="button">Añadir al carrito</button>
-      <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-heart"></i>
-      </button>
-      <div class="ratings">
-        <p style="color:#f9f9f9;">31 opiniones</p>
-        <p style="color:#f9f9f9;">
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star-empty"></span>
-        </p>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-md-6">
-    <div style="height: 305px">
-      <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-        <div uib-slide ng-repeat="slide in producto.cImagenes">
-          <img ng-src="{{slide}}" style="margin:auto;">
-          <div class="carousel-caption">
-          </div>
+    <div class="row">
+        <div class="row carousel-holder">
+            <div class="col-md-12">
+                <h1 style="color:#d55534;">{{producto.cNombre}}
+                    <br>
+                    <small style="color:#be8511;">${{producto.dPrecioPublico}}</small>
+                </h1>
+                <button class="btn btn-primary btn-lg" type="button" ng-click="comprar()">Comprar</button>
+                <button class="btn btn-outline btn-primary btn-lg" type="button">Añadir al carrito</button>
+                <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-heart"></i>
+                </button>
+                <div class="ratings">
+                    <p style="color:#f9f9f9;">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        31 opiniones
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="col-xs-6">
+            <div style="height: 255px">
+                <ui-carousel
+                        slides="producto.cImagenes"
+                        slides-to-show="1"
+                        slides-to-scroll="1"
+                        initial-slide="1"
+                        autoplay="true"
+                        autoplay-speed="5000"
+                        dots="true">
+                    <carousel-item>
+                        <img src="{{item}}" alt="" height="100%" width="100%"/>
+                    </carousel-item>
+                </ui-carousel>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel-body">
+                <h2 style="color:#f9f9f9;" > Cantidad:</h2>
+                <div class="input-group" style="width:40%">
+                                    <span class="input-group-btn">
+                                        <button class="quantity-left-minus btn btn-number" type="button"
+                                                data-type="minus" data-field="">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                    <input name="quantity" class="form-control input-number" id="quantity" type="text" min="1" max="100" ng-model="cantidadProducto">
+                    <span class="input-group-btn">
+                                        <button class="quantity-right-plus btn btn-number" type="button"
+                                                data-type="plus" data-field="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                    </span>
+                </div>
+                <br>
+                <br>
+                <p style="color:#f9f9f9;">{{producto.cDescripcion}}</p>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="panel-body">
-      <p style="color:#f9f9f9;">{{producto.cDescripcion}}</p>
-    </div>
-  </div>
 </div>
