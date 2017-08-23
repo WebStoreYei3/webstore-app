@@ -1,7 +1,6 @@
 'use strict';
 angular.module('webstore-app')
     .controller('PublicCtrl',function ($scope, $location,WorkspaceServ, ProductoServ,$log,PublicServ) {
-        $scope.productos = {};
         $scope.myInterval = 5000;
         $scope.productos = PublicServ.productos;
         $scope.total = PublicServ.total;
