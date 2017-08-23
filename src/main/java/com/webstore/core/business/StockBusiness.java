@@ -3,6 +3,9 @@ package com.webstore.core.business;
 import com.mercadopago.MP;
 import com.webstore.core.entity.*;
 import com.webstore.core.repository.*;
+import com.webstore.mail.MailVO;
+import com.webstore.mail.MessageGenerator;
+import com.webstore.mail.MotorMail;
 import com.webstore.rest.request.FilaResumenCompraRequest;
 import com.webstore.rest.request.PagoRequest;
 import com.webstore.rest.request.StockRequest;
@@ -29,6 +32,7 @@ public class StockBusiness {
     private UsuarioRepository usuarioRepository;
     private UsuarioInvitadoRepository usuarioInvitadoRepository;
     private OrdenEntregaInvitadoRepository ordenEntregaInvitadoRepository;
+    private MessageGenerator messageGenerator;
 
     @Autowired
     public StockBusiness(
@@ -41,7 +45,8 @@ public class StockBusiness {
             SubtipoProductoRepository subtipoProductoRepository,
             UsuarioRepository usuarioRepository,
             UsuarioInvitadoRepository usuarioInvitadoRepository,
-            OrdenEntregaInvitadoRepository ordenEntregaInvitadoRepository
+            OrdenEntregaInvitadoRepository ordenEntregaInvitadoRepository,
+            MessageGenerator messageGenerator
             ){
         this.stockRepository = stockRepository;
         this.productoRepository = productoRepository;
@@ -53,6 +58,7 @@ public class StockBusiness {
         this.usuarioRepository = usuarioRepository;
         this.usuarioInvitadoRepository = usuarioInvitadoRepository;
         this.ordenEntregaInvitadoRepository = ordenEntregaInvitadoRepository;
+        this.messageGenerator = messageGenerator;
     }
 
     @RequestMapping(value="/altaStock", method = RequestMethod.POST)
@@ -142,8 +148,17 @@ public class StockBusiness {
             ordenEntregaInvitadoEntity.setiIdEstadoOrden(1);
             ordenEntregaInvitadoEntity.setcDireccionEntrega(usuarioInvitadoEntity.getcDireccion1());
             ordenEntregaInvitadoRepository.save(ordenEntregaInvitadoEntity);
+            enviarMail(pagoRequest.getFilas(),usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
             return new GenerarPagoResponse(generarCheckOut(pagoRequest.getFilas()));
         }
         return null;
+    }
+
+    public String enviarMail(List<FilaResumenCompraRequest> filaResumenCompraRequests,
+                             UsuarioInvitadoEntity usuarioInvitadoEntity,
+                             OrdenEntregaInvitadoEntity ordenEntregaInvitadoEntity){
+        MailVO mailVO = new MailVO(filaResumenCompraRequests,usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
+        MotorMail.sendMail(usuarioInvitadoEntity.getcMail(),messageGenerator.generarMensaje(mailVO));
+        return "Correcto";
     }
 }
