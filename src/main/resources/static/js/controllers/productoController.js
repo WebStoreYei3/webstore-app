@@ -16,6 +16,7 @@ angular.module('webstore-app')
             $scope.carrito.productos[$scope.carrito.productos.length] = $scope.producto;
             PublicServ.productos = $scope.carrito.productos;
             sessionStorage.setItem('carrito',JSON.stringify($scope.carrito));
+            PublicServ.ret = $scope.carrito;
             $location.path('/direccion');
         };
 

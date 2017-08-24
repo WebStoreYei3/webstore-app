@@ -2,7 +2,7 @@
 angular.module('webstore-app')
     .controller('PublicCtrl',function ($scope, $location,WorkspaceServ, ProductoServ,$log,PublicServ) {
         $scope.myInterval = 5000;
-        $scope.productos = PublicServ.productos;
+        PublicServ.carrito;
         $scope.total = PublicServ.total;
 
         $scope.estaConectado = function() {
@@ -32,6 +32,12 @@ angular.module('webstore-app')
                 .$promise.then(function(key) {
                 $scope.productos = key;
             })
+            var log = [];
+                $scope.productosA = JSON.parse(sessionStorage.getItem('carrito')).productos;
+                $scope.total = 0;
+                angular.forEach($scope.productosA, function (value) {
+                    $scope.total = $scope.total + (value.dPrecioPublico * value.cantidadProducto);
+                }, log);
         };
 
         $scope.cargarPagina();
