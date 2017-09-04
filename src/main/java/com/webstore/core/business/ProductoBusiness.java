@@ -39,6 +39,20 @@ public class ProductoBusiness{
         return getProductoResponse(productoRepository.findOne(id));
     }
 
+    public List<ProductoResponse> buscarProductos(String cadena){
+        List<ProductoResponse> result = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(cadena," ");
+        while(st.hasMoreTokens()){
+            for(ProductoEntity productoEntity:productoRepository.buscarProductos(st.nextToken())){
+                ProductoResponse pr = getProductoResponse(productoEntity);
+                if(!result.contains(pr)) {
+                    result.add(pr);
+                }
+            }
+        }
+        return result;
+    }
+
     public static ProductoResponse getProductoResponse(ProductoEntity productoEntity){
         return new ProductoResponse(
                 productoEntity.getId(),

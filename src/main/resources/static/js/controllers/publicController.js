@@ -4,6 +4,7 @@ angular.module('webstore-app')
         $scope.myInterval = 5000;
         PublicServ.carrito;
         $scope.total = PublicServ.total;
+        $scope.busqueda = "";
 
         $scope.estaConectado = function() {
             $scope.name = sessionStorage.getItem('nombre');
@@ -33,14 +34,32 @@ angular.module('webstore-app')
                 $scope.productos = key;
             })
             var log = [];
+            if(JSON.parse(sessionStorage.getItem('carrito'))!==null) {
                 $scope.productosA = JSON.parse(sessionStorage.getItem('carrito')).productos;
                 $scope.total = 0;
                 angular.forEach($scope.productosA, function (value) {
                     $scope.total = $scope.total + (value.dPrecioPublico * value.cantidadProducto);
                 }, log);
+            }
+        };
+
+
+        $scope.buscarProductosIndex = function (){
+            if($scope.busqueda!==null&&$scope.busqueda!=="") {
+                ProductoServ.buscarProductos.c({
+                    cadena: $scope.busqueda
+                })
+                    .$promise.then(function (key) {
+                    $scope.productos = key;
+                })
+            }
         };
 
         $scope.cargarPagina();
+
+        $scope.reloadRoute = function() {
+            $window.location.reload();
+        }
 
         $scope.selectItem = function (id) {
             sessionStorage.setItem('itemSelect',id);

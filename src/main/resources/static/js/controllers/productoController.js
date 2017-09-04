@@ -8,6 +8,10 @@ angular.module('webstore-app')
         $scope.cantidadProducto = 1;
 
         $scope.comprar = function () {
+            $scope.anadirCarrito();
+            $location.path('/direccion');
+        };
+        $scope.anadirCarrito = function () {
             if(sessionStorage.getItem('carrito')!==null){
                 $scope.carrito = JSON.parse(sessionStorage.getItem('carrito'));
                 PublicServ.productos = JSON.parse(sessionStorage.getItem('carrito'));
@@ -17,7 +21,6 @@ angular.module('webstore-app')
             PublicServ.productos = $scope.carrito.productos;
             sessionStorage.setItem('carrito',JSON.stringify($scope.carrito));
             PublicServ.ret = $scope.carrito;
-            $location.path('/direccion');
         };
 
         $scope.cargarPaginaProducto = function (){

@@ -11,6 +11,11 @@ angular.module('webstore-app')
                 b: {method: 'GET', params:{
                     id : "@id"
                 },isArray:false}
+            }),
+            buscarProductos: $resource('/buscarProductos', {}, {
+                c: {method: 'GET', params:{
+                    cadena : "@cadena"
+                },isArray:true}
             })
         };
         return factory;

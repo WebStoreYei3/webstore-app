@@ -29,6 +29,11 @@ public class ProductoRESTController {
         return productoBusiness.obtenerProductos(cantidad);
     }
 
+    @RequestMapping (value="/buscarProductos", method = RequestMethod.GET)
+    public List<ProductoResponse> buscarProductos(String cadena){
+        return productoBusiness.buscarProductos(cadena);
+    }
+
     @RequestMapping (value="/obtenerProductoById", method = RequestMethod.GET)
     public ProductoResponse obtenerProductoById(Integer id){
         return productoBusiness.obtenerProductoById(id);

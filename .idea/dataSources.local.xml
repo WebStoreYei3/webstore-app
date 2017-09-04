@@ -48,5 +48,36 @@
       <user-name>root</user-name>
       <introspection-schemas>*:webstore</introspection-schemas>
     </data-source>
+    <data-source name="persistenceUnit/OpenJPA" uuid="5394ef38-84cc-4ea3-af24-9781cc980cf0">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <user-name>admin</user-name>
+    </data-source>
+    <data-source name="persistenceUnit/TopLink" uuid="87ef1778-5653-46de-a5b9-e9774ba42db0">
+      <database-info product="MySQL" version="5.7.18-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
+      <introspection-schemas>*:webstore</introspection-schemas>
+    </data-source>
+    <data-source name="persistenceUnit/Hibernate" uuid="42310f99-70f8-453c-9e2c-182bcbdce2f9">
+      <database-info product="MySQL" version="5.7.18-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
+      <introspection-schemas>*:webstore</introspection-schemas>
+    </data-source>
+    <data-source name="persistenceUnit/EclipseLink" uuid="956ed4d8-9ef3-47cb-b77d-a700b4dbf633">
+      <database-info product="MySQL" version="5.7.18-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
+      <introspection-schemas>*:webstore</introspection-schemas>
+    </data-source>
   </component>
 </project>
