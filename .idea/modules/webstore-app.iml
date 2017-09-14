@@ -21,6 +21,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="sdk-0.3.4" level="application" />
   </component>
 </module>
