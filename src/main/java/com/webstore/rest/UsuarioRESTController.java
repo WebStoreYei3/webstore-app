@@ -3,6 +3,7 @@ package com.webstore.rest;
 import com.webstore.core.business.UsuarioBusiness;
 import com.webstore.rest.request.LoginRequest;
 import com.webstore.rest.request.LogoutRequest;
+import com.webstore.rest.request.SolicitudContraseniaRequest;
 import com.webstore.rest.response.ClienteLoginResponse;
 import com.webstore.rest.response.EmpleadoLoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class UsuarioRESTController {
     @RequestMapping (value="/tiempoAgotado", method = RequestMethod.GET)
     public boolean tiempoAgotado (String id, String date) throws Exception {
         return usuarioBusiness.tiempoAgotado(id,date);
+    }
+
+    @RequestMapping (value="/solicitarMailContrasenia", method = RequestMethod.POST)
+    public boolean solicitarMailContrasenia (@RequestBody SolicitudContraseniaRequest request) throws Exception {
+        return usuarioBusiness.solicitarMailContrasenia(request);
     }
 }

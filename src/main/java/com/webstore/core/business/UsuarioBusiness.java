@@ -6,10 +6,15 @@ import com.webstore.core.entity.UsuarioEntity;
 import com.webstore.core.repository.EmpleadoRepository;
 import com.webstore.core.repository.RolRepository;
 import com.webstore.core.repository.UsuarioRepository;
+import com.webstore.mail.MailDeCambioContraseniaVO;
+import com.webstore.mail.MessageGenerator;
+import com.webstore.mail.MotorMail;
 import com.webstore.rest.request.LoginRequest;
 import com.webstore.rest.request.LogoutRequest;
+import com.webstore.rest.request.SolicitudContraseniaRequest;
 import com.webstore.rest.response.ClienteLoginResponse;
 import com.webstore.rest.response.EmpleadoLoginResponse;
+import com.webstore.sec.StringEncrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -17,6 +22,7 @@ import org.springframework.util.StringUtils;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+
 
 @Component
 public class UsuarioBusiness {
@@ -99,5 +105,17 @@ public class UsuarioBusiness {
             }
         }
         return true;
+    }
+
+    public boolean solicitarMailContrasenia( SolicitudContraseniaRequest request) throws Exception {
+        UsuarioEntity usuarioEntity = usuarioRepository.findByCAndCMail(request.getCorreo());
+        if(usuarioEntity!=null){
+            MessageGenerator messageGenerator = new MessageGenerator();
+            MailDeCambioContraseniaVO mailDeCambioContraseniaVO = new MailDeCambioContraseniaVO(usuarioEntity, StringEncrypt.encrypt(request.getCorreo()));
+            String mesnaje = messageGenerator.generarMensajeDeContrasenia(mailDeCambioContraseniaVO);
+            MotorMail.sendMail(usuarioEntity.getcMail(), mesnaje);
+            return true;
+        }
+        return false;
     }
 }

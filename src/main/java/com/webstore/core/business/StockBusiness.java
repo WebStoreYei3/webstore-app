@@ -3,7 +3,7 @@ package com.webstore.core.business;
 import com.mercadopago.MP;
 import com.webstore.core.entity.*;
 import com.webstore.core.repository.*;
-import com.webstore.mail.MailVO;
+import com.webstore.mail.MailDeCompraVO;
 import com.webstore.mail.MessageGenerator;
 import com.webstore.mail.MotorMail;
 import com.webstore.rest.request.FilaResumenCompraRequest;
@@ -157,8 +157,8 @@ public class StockBusiness {
     public String enviarMail(List<FilaResumenCompraRequest> filaResumenCompraRequests,
                              UsuarioInvitadoEntity usuarioInvitadoEntity,
                              OrdenEntregaInvitadoEntity ordenEntregaInvitadoEntity){
-        MailVO mailVO = new MailVO(filaResumenCompraRequests,usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
-        MotorMail.sendMail(usuarioInvitadoEntity.getcMail(),messageGenerator.generarMensaje(mailVO));
+        MailDeCompraVO mailDeCompraVO = new MailDeCompraVO(filaResumenCompraRequests,usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
+        MotorMail.sendMail(usuarioInvitadoEntity.getcMail(),messageGenerator.generarMensajeDeCompra(mailDeCompraVO));
         return "Correcto";
     }
 }

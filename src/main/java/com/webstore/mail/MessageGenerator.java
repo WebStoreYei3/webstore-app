@@ -17,7 +17,7 @@ public class MessageGenerator {
     @Autowired
     private ProductoRepository productoRepository;
 
-    public String generarMensaje(MailVO mailVO){
+    public String generarMensajeDeCompra(MailDeCompraVO mailDeCompraVO){
         BigDecimal total = BigDecimal.valueOf(0);
         String msg = "<h1 style=\"color: #5e9ca0; text-align: center;\"><img src=\"http://www.familydog.com.mx/images/slider_pic2.jpg\" alt=\"imagen\" width=\"582\" height=\"146\" /></h1>";
         msg += "<h2 style=\"color: #2e6c80; text-align: center;\">¡Gracias por tu compra!</h2>";
@@ -25,7 +25,7 @@ public class MessageGenerator {
         msg += "<p style=\"text-align: center;\">" +
                 "<table style=\"width:100%\">" +
                 "<tr>";
-        for(FilaResumenCompraRequest filaResumenCompraRequest:mailVO.getFilaResumenCompraRequest()){
+        for(FilaResumenCompraRequest filaResumenCompraRequest: mailDeCompraVO.getFilaResumenCompraRequest()){
             ProductoEntity productoEntity = productoRepository.findOne(filaResumenCompraRequest.getId());
             BigDecimal costoFila = productoEntity.getdPrecioPublico().multiply(new BigDecimal(filaResumenCompraRequest.getCantidadProducto()));
             msg += "<td>" + productoEntity.getcNombre() + "</td>" +
@@ -42,14 +42,22 @@ public class MessageGenerator {
                 "</tr>";
         msg += "<p style=\"text-align: center;\"><br />Envío</p>";
         msg += "<p style=\"text-align: center;\">" +
-                "<br /> Cliente: <strong>"+ mailVO.getUsuarioInvitadoEntity().getcNombre() +"</strong>" +
-                "<br /> Telefono: <strong>" + mailVO.getUsuarioInvitadoEntity().getcTelefono() + "</strong>" +
-                "<br /> Dirección de entrega: <strong>" + mailVO.getOrdenEntregaInvitadoEntity().getcDireccionEntrega() + "</strong></p>";
+                "<br /> Cliente: <strong>"+ mailDeCompraVO.getUsuarioInvitadoEntity().getcNombre() +"</strong>" +
+                "<br /> Telefono: <strong>" + mailDeCompraVO.getUsuarioInvitadoEntity().getcTelefono() + "</strong>" +
+                "<br /> Dirección de entrega: <strong>" + mailDeCompraVO.getOrdenEntregaInvitadoEntity().getcDireccionEntrega() + "</strong></p>";
         msg += "<p style=\"text-align: center;\">Nuestros mejores deseos, Gracias.<br /> Atte:Equipo deWebstore.</p>";
         msg += "<p style=\"text-align: center;\">--------------------------------------------------------------------</p>";
         msg += "<p style=\"text-align: center;\"><img border=\"0\" src=\"ico_09Grande.png\" width=\"40\" height=\"40\"> <span style=\"color:#f9f9f9;\">Web</span><font color=\"#D55534\">Store</font></p>";
         msg += "<p style=\"text-align: center;\">WebStore S.A. de C.V.</p>";
         msg += "<p style=\"text-align: center;\">Direccion.</p>";
+        return msg;
+    }
+
+    public String generarMensajeDeContrasenia(MailDeCambioContraseniaVO mailDeCambioContraseniaVO){
+        BigDecimal total = BigDecimal.valueOf(0);
+        String msg = "";
+        msg += "<h2 style=\"color: #2e6c80; text-align: center;\">Accede al siguiente link para cambiar tu contrasenia</h2>";
+        msg += "<a href=\""+ mailDeCambioContraseniaVO.getLink()+"\" style=\"text-align: center;\">"+ mailDeCambioContraseniaVO.getLink()+"</a>";
         return msg;
     }
 }
