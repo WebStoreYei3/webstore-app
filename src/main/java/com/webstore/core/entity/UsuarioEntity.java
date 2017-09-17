@@ -21,43 +21,11 @@ public class UsuarioEntity {
     private Timestamp fUltSesion;
     private String cUsuario;
     private String cContrasenia;
-
-    public UsuarioEntity() {
-    }
-
-    public UsuarioEntity(Integer id,
-                         String cNombre,
-                         String cApepat,
-                         String cApemat,
-                         String cMail,
-                         String cTelefono,
-                         String cCelular,
-                         String cDireccion1,
-                         String cDireccion2,
-                         Timestamp fMiembroDesde,
-                         String cEstado,
-                         Integer iIdEstadoUsuario,
-                         String cUsuario,
-                         String cContrasenia) {
-        this.id = id;
-        this.cNombre = cNombre;
-        this.cApepat = cApepat;
-        this.cApemat = cApemat;
-        this.cMail = cMail;
-        this.cTelefono = cTelefono;
-        this.cCelular = cCelular;
-        this.cDireccion1 = cDireccion1;
-        this.cDireccion2 = cDireccion2;
-        this.fMiembroDesde = fMiembroDesde;
-        this.cEstado = cEstado;
-        this.iIdEstadoUsuario = iIdEstadoUsuario;
-        this.cUsuario = cUsuario;
-        this.cContrasenia = cContrasenia;
-    }
+    private String cConfirmado;
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID")
     public Integer getId() {
         return id;
     }
@@ -67,7 +35,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_NOMBRE", nullable = false, length = 45)
+    @Column(name = "C_NOMBRE")
     public String getcNombre() {
         return cNombre;
     }
@@ -77,7 +45,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_APEPAT", nullable = false, length = 45)
+    @Column(name = "C_APEPAT")
     public String getcApepat() {
         return cApepat;
     }
@@ -87,7 +55,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_APEMAT", nullable = true, length = 45)
+    @Column(name = "C_APEMAT")
     public String getcApemat() {
         return cApemat;
     }
@@ -97,7 +65,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_MAIL", nullable = false, length = 50)
+    @Column(name = "C_MAIL")
     public String getcMail() {
         return cMail;
     }
@@ -107,7 +75,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_TELEFONO", nullable = true, length = 45)
+    @Column(name = "C_TELEFONO")
     public String getcTelefono() {
         return cTelefono;
     }
@@ -117,7 +85,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_CELULAR", nullable = false, length = 45)
+    @Column(name = "C_CELULAR")
     public String getcCelular() {
         return cCelular;
     }
@@ -127,7 +95,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_DIRECCION1", nullable = false, length = 255)
+    @Column(name = "C_DIRECCION1")
     public String getcDireccion1() {
         return cDireccion1;
     }
@@ -137,7 +105,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_DIRECCION2", nullable = true, length = 255)
+    @Column(name = "C_DIRECCION2")
     public String getcDireccion2() {
         return cDireccion2;
     }
@@ -147,7 +115,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "F_MIEMBRO_DESDE", nullable = false)
+    @Column(name = "F_MIEMBRO_DESDE")
     public Timestamp getfMiembroDesde() {
         return fMiembroDesde;
     }
@@ -157,7 +125,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_ESTADO", nullable = false, length = 45)
+    @Column(name = "C_ESTADO")
     public String getcEstado() {
         return cEstado;
     }
@@ -167,7 +135,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "I_ID_ESTADO_USUARIO", nullable = false)
+    @Column(name = "I_ID_ESTADO_USUARIO")
     public Integer getiIdEstadoUsuario() {
         return iIdEstadoUsuario;
     }
@@ -177,7 +145,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "F_ULT_SESION", nullable = true)
+    @Column(name = "F_ULT_SESION")
     public Timestamp getfUltSesion() {
         return fUltSesion;
     }
@@ -187,7 +155,7 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_USUARIO", nullable = false, length = 45)
+    @Column(name = "C_USUARIO")
     public String getcUsuario() {
         return cUsuario;
     }
@@ -197,13 +165,23 @@ public class UsuarioEntity {
     }
 
     @Basic
-    @Column(name = "C_CONTRASENIA", nullable = false, length = 45)
+    @Column(name = "C_CONTRASENIA")
     public String getcContrasenia() {
         return cContrasenia;
     }
 
     public void setcContrasenia(String cContrasenia) {
         this.cContrasenia = cContrasenia;
+    }
+
+    @Basic
+    @Column(name = "C_CONFIRMADO")
+    public String getcConfirmado() {
+        return cConfirmado;
+    }
+
+    public void setcConfirmado(String cConfirmado) {
+        this.cConfirmado = cConfirmado;
     }
 
     @Override
@@ -229,7 +207,10 @@ public class UsuarioEntity {
             return false;
         if (fUltSesion != null ? !fUltSesion.equals(that.fUltSesion) : that.fUltSesion != null) return false;
         if (cUsuario != null ? !cUsuario.equals(that.cUsuario) : that.cUsuario != null) return false;
-        return cContrasenia != null ? cContrasenia.equals(that.cContrasenia) : that.cContrasenia == null;
+        if (cContrasenia != null ? !cContrasenia.equals(that.cContrasenia) : that.cContrasenia != null) return false;
+        if (cConfirmado != null ? !cConfirmado.equals(that.cConfirmado) : that.cConfirmado != null) return false;
+
+        return true;
     }
 
     @Override
@@ -249,6 +230,7 @@ public class UsuarioEntity {
         result = 31 * result + (fUltSesion != null ? fUltSesion.hashCode() : 0);
         result = 31 * result + (cUsuario != null ? cUsuario.hashCode() : 0);
         result = 31 * result + (cContrasenia != null ? cContrasenia.hashCode() : 0);
+        result = 31 * result + (cConfirmado != null ? cConfirmado.hashCode() : 0);
         return result;
     }
 }

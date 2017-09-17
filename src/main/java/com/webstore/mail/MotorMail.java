@@ -12,7 +12,7 @@ import java.util.Properties;
 public class MotorMail
 {
 
-    public static void sendMail(String to,String message)
+    public static void sendMail(String to,String message,String subject)
     {
 
         String host ="outlook.office365.com";//Suponiendo que el servidor SMTPsea la propia máquina
@@ -37,7 +37,7 @@ public class MotorMail
 
             SMTPAuthentication auth = new SMTPAuthentication();
             Session session = Session.getInstance(prop , auth );
-            Message msg = getMessage(session, from, to, message);
+            Message msg = getMessage(session, from, to, message,subject);
             System.out.println ("Enviando ..." );
 
             Transport.send(msg);
@@ -55,7 +55,7 @@ public class MotorMail
 
     }
 
-    private static MimeMessage getMessage(Session session, String from, String to,String message)
+    private static MimeMessage getMessage(Session session, String from, String to,String message, String subject)
     {
 
         try{
@@ -63,8 +63,8 @@ public class MotorMail
             MimeMessage msg = new MimeMessage(session);
             msg.setContent(message, "text/html");
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            msg.setFrom(new InternetAddress(from,"Equipo de Gemobile"));
-            msg.setSubject("Confirmación de pedido");
+            msg.setFrom(new InternetAddress(from,"Equipo de WebStore"));
+            msg.setSubject(subject);
             return msg;
 
         }

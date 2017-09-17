@@ -11,9 +11,11 @@ import com.webstore.mail.MessageGenerator;
 import com.webstore.mail.MotorMail;
 import com.webstore.rest.request.LoginRequest;
 import com.webstore.rest.request.LogoutRequest;
+import com.webstore.rest.request.SetearNuevaContraseniaRequest;
 import com.webstore.rest.request.SolicitudContraseniaRequest;
 import com.webstore.rest.response.ClienteLoginResponse;
 import com.webstore.rest.response.EmpleadoLoginResponse;
+import com.webstore.rest.response.RespuestaGeneralResponse;
 import com.webstore.sec.StringEncrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -107,15 +109,25 @@ public class UsuarioBusiness {
         return true;
     }
 
-    public boolean solicitarMailContrasenia( SolicitudContraseniaRequest request) throws Exception {
-        UsuarioEntity usuarioEntity = usuarioRepository.findByCAndCMail(request.getCorreo());
+    public RespuestaGeneralResponse solicitarMailContrasenia(SolicitudContraseniaRequest request) throws Exception {
+        UsuarioEntity usuarioEntity = usuarioRepository.findByCMail(request.getCorreo());
         if(usuarioEntity!=null){
             MessageGenerator messageGenerator = new MessageGenerator();
             MailDeCambioContraseniaVO mailDeCambioContraseniaVO = new MailDeCambioContraseniaVO(usuarioEntity, StringEncrypt.encrypt(request.getCorreo()));
             String mesnaje = messageGenerator.generarMensajeDeContrasenia(mailDeCambioContraseniaVO);
-            MotorMail.sendMail(usuarioEntity.getcMail(), mesnaje);
-            return true;
+            MotorMail.sendMail(usuarioEntity.getcMail(), mesnaje, "Solicitud de cambio de contraseñia");
+            return new RespuestaGeneralResponse(false);
         }
-        return false;
+        return new RespuestaGeneralResponse(true);
+    }
+
+    public RespuestaGeneralResponse setearNuevaContrasenia(SetearNuevaContraseniaRequest request) throws Exception {
+        UsuarioEntity usuarioEntity = usuarioRepository.findByCMail(StringEncrypt.decrypt(request.getKey()));
+        if(usuarioEntity!=null){
+            usuarioEntity.setcContrasenia(request.getNuevaContrasenia());
+            usuarioRepository.save(usuarioEntity);
+            return new RespuestaGeneralResponse(false);
+        }
+        return new RespuestaGeneralResponse(true);
     }
 }

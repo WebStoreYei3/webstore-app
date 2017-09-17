@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tipo_producto", schema = "webstore", catalog = "")
-public class TipoProductoEntity {
+public class    TipoProductoEntity {
     private Integer id;
     private String cCodigo;
     private String cDescripcion;

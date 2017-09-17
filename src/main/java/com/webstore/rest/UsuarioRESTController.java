@@ -3,9 +3,11 @@ package com.webstore.rest;
 import com.webstore.core.business.UsuarioBusiness;
 import com.webstore.rest.request.LoginRequest;
 import com.webstore.rest.request.LogoutRequest;
+import com.webstore.rest.request.SetearNuevaContraseniaRequest;
 import com.webstore.rest.request.SolicitudContraseniaRequest;
 import com.webstore.rest.response.ClienteLoginResponse;
 import com.webstore.rest.response.EmpleadoLoginResponse;
+import com.webstore.rest.response.RespuestaGeneralResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +46,12 @@ public class UsuarioRESTController {
     }
 
     @RequestMapping (value="/solicitarMailContrasenia", method = RequestMethod.POST)
-    public boolean solicitarMailContrasenia (@RequestBody SolicitudContraseniaRequest request) throws Exception {
+    public RespuestaGeneralResponse solicitarMailContrasenia (@RequestBody SolicitudContraseniaRequest request) throws Exception {
         return usuarioBusiness.solicitarMailContrasenia(request);
+    }
+
+    @RequestMapping (value="/setearNuevaContrasenia", method = RequestMethod.POST)
+    public RespuestaGeneralResponse setearNuevaContrasenia (@RequestBody SetearNuevaContraseniaRequest request) throws Exception {
+        return usuarioBusiness.setearNuevaContrasenia(request);
     }
 }

@@ -148,17 +148,17 @@ public class StockBusiness {
             ordenEntregaInvitadoEntity.setiIdEstadoOrden(1);
             ordenEntregaInvitadoEntity.setcDireccionEntrega(usuarioInvitadoEntity.getcDireccion1());
             ordenEntregaInvitadoRepository.save(ordenEntregaInvitadoEntity);
-            enviarMail(pagoRequest.getFilas(),usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
+            enviarMailDeConfimacionPedido(pagoRequest.getFilas(),usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
             return new GenerarPagoResponse(generarCheckOut(pagoRequest.getFilas()));
         }
         return null;
     }
 
-    public String enviarMail(List<FilaResumenCompraRequest> filaResumenCompraRequests,
+    public String enviarMailDeConfimacionPedido(List<FilaResumenCompraRequest> filaResumenCompraRequests,
                              UsuarioInvitadoEntity usuarioInvitadoEntity,
                              OrdenEntregaInvitadoEntity ordenEntregaInvitadoEntity){
         MailDeCompraVO mailDeCompraVO = new MailDeCompraVO(filaResumenCompraRequests,usuarioInvitadoEntity,ordenEntregaInvitadoEntity);
-        MotorMail.sendMail(usuarioInvitadoEntity.getcMail(),messageGenerator.generarMensajeDeCompra(mailDeCompraVO));
+        MotorMail.sendMail(usuarioInvitadoEntity.getcMail(),messageGenerator.generarMensajeDeCompra(mailDeCompraVO),"Confirmación de pedido");
         return "Correcto";
     }
 }

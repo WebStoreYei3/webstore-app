@@ -33,6 +33,14 @@ angular.module('webstore-app', ['ngRoute', 'ngAnimate', 'ngResource', 'ngCookies
                 templateUrl: 'pages/cheackout.tplt.html',
                 controller: 'CheckOutCtrl'
             })
+            .when('/solicitarCambioContrasenia', {
+                templateUrl: 'pages/solicitarCC.tplt.html',
+                controller: 'SolicitarCCCtrl'
+            })
+            .when('/cambiarContrasenia/:dat', {
+                templateUrl: 'pages/nuevaContrasenia.tplt.html',
+                controller: 'NuevaContraseniaCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

@@ -58,7 +58,9 @@
             <label style="color:#ffd3a6;">Apellido Materno*</label>
             <input class="form-control" ng-model = "apeMat">
             <label style="color:#ffd3a6;">E-mail*</label>
-            <input class="form-control" ng-model = "email">
+            <div class="{{email === confMail && 'form-group has-success' || 'form-group has-error' }}">
+                <input class="form-control" ng-model = "email">
+            </div>
             <label style="color:#ffd3a6;">Confimacion e-mail*</label>
             <input class="form-control" ng-model = "confMail">
             <label style="color:#ffd3a6;">Numero de telefono*</label>
