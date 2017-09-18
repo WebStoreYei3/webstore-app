@@ -64,6 +64,8 @@
     <script src="js/services/solicitarCCService.js"></script>
     <script src="js/controllers/nuevaContraseniaController.js"></script>
     <script src="js/services/nuevaContraseniaService.js"></script>
+    <script src="js/controllers/registroController.js"></script>
+    <script src="js/services/registroService.js"></script>
 
 
 </head>
@@ -147,13 +149,14 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
+                    <li ng-hide="estaConectado()"><a href="#/registrarseA/"><i class="fa fa-check-square-o fa-fw"></i> Registrarse</a>
                     <li ng-hide="estaConectado()"><a href="#/login/"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
                     <li ng-show="estaConectado()"><a href=""><i class="fa fa-user fa-fw"></i> Ver Perfil</a>
                     </li>
                     <li ng-show="estaConectado()"><a href=""><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                     </li>
                     <li class="divider" ng-show="estaConectado()"></li>
-                    <li ng-show="estaConectado()"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar
+                    <li ng-show="estaConectado()"><a ng-click="cerrarSesion()"><i class="fa fa-sign-out fa-fw"></i> Cerrar
                         Sesión</a>
                     </li>
                 </ul>

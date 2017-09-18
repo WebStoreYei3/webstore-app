@@ -1,6 +1,6 @@
 'use strict';
 angular.module('webstore-app')
-    .controller('PublicCtrl',function ($scope, $location,WorkspaceServ, ProductoServ,$log,PublicServ) {
+    .controller('PublicCtrl',function ($scope, $location,WorkspaceServ, ProductoServ,$log,PublicServ,LoginServ) {
         $scope.myInterval = 5000;
         PublicServ.carrito;
         $scope.total = PublicServ.total;
@@ -75,6 +75,18 @@ angular.module('webstore-app')
 
         $scope.selectItem = function (id) {
             sessionStorage.setItem('itemSelect',id);
+        }
+
+        $scope.cerrarSesion = function () {
+            LoginServ.cliente.logOut({
+                id:sessionStorage.getItem('usuarioId')
+            })
+                .$promise.then(function(key) {
+                alert("Nos vemos" + $scope.name);
+                $scope.name="";
+                sessionStorage.clear();
+                $location.path('/');
+            })
         }
 
     });

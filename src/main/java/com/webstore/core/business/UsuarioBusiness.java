@@ -9,10 +9,7 @@ import com.webstore.core.repository.UsuarioRepository;
 import com.webstore.mail.MailDeCambioContraseniaVO;
 import com.webstore.mail.MessageGenerator;
 import com.webstore.mail.MotorMail;
-import com.webstore.rest.request.LoginRequest;
-import com.webstore.rest.request.LogoutRequest;
-import com.webstore.rest.request.SetearNuevaContraseniaRequest;
-import com.webstore.rest.request.SolicitudContraseniaRequest;
+import com.webstore.rest.request.*;
 import com.webstore.rest.response.ClienteLoginResponse;
 import com.webstore.rest.response.EmpleadoLoginResponse;
 import com.webstore.rest.response.RespuestaGeneralResponse;
@@ -41,6 +38,22 @@ public class UsuarioBusiness {
         this.usuarioRepository = usuarioRepository;
         this.rolRepository = rolRepository;
         this.empleadoRepository = empleadoRepository;
+    }
+
+    public ClienteLoginResponse registrarse(RegistrarseRequest request){
+        if(usuarioRepository.findByCMail(request.getEmail())==null) {
+            UsuarioEntity usuarioEntity = new UsuarioEntity();
+            usuarioEntity.setcMail(request.getEmail());
+            usuarioEntity.setcCelular(request.getTelefono());
+            usuarioEntity.setcNombre(request.getNombre());
+            usuarioEntity.setcApepat(request.getApellidoPat());
+            usuarioEntity.setcApemat(request.getApellidoMat());
+            usuarioEntity.setcContrasenia(request.getContrasenia());
+            usuarioEntity = usuarioRepository.save(usuarioEntity);
+            return new ClienteLoginResponse(usuarioEntity.getId().toString(), usuarioEntity.getcNombre(), "1");
+        }else {
+            return new ClienteLoginResponse(null,null, "4");
+        }
     }
 
     public EmpleadoLoginResponse empleadoLogin(LoginRequest request){

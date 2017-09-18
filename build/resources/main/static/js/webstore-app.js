@@ -41,6 +41,10 @@ angular.module('webstore-app', ['ngRoute', 'ngAnimate', 'ngResource', 'ngCookies
                 templateUrl: 'pages/nuevaContrasenia.tplt.html',
                 controller: 'NuevaContraseniaCtrl'
             })
+            .when('/registrarseA/', {
+                templateUrl: 'pages/registrarse.tplt.html',
+                controller: 'RegistroCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

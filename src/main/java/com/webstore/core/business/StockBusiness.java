@@ -118,7 +118,12 @@ public class StockBusiness {
                     "'title':"+productoEntity.getcNombre()+","+
                     "'quantity':"+filaResumenCompraRequest.getCantidadProducto()+","+
                     "'currency_id':'MXN',"+
-                    "'unit_price':"+productoEntity.getdPrecioPublico()+"}";
+                    "'unit_price':"+productoEntity.getdPrecioPublico()+","+
+                    "'auto_return':{" +
+                    "'approved::':'http://localhost:8080/#/',"+
+                    "'all::':'http://localhost:8080/#/login',"+
+                    "}"+
+                    "}";
             i++;
         }
         preferenceData += "]}";

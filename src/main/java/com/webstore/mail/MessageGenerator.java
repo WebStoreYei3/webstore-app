@@ -57,7 +57,8 @@ public class MessageGenerator {
         BigDecimal total = BigDecimal.valueOf(0);
         String msg = "";
         msg += "<h2 style=\"color: #2e6c80; text-align: center;\">Accede al siguiente link para cambiar tu contrasenia</h2>";
-        msg += "<a href=\"http://localhost:8080/#/cambiarContrasenia/"+ mailDeCambioContraseniaVO.getLink()+"\" style=\"text-align: center;\">http://localhost:8080/#/cambiarContrasenia/"+ mailDeCambioContraseniaVO.getLink()+"</a>";
+        //msg += "<a href=\"http://localhost:8080/#/cambiarContrasenia/"+ mailDeCambioContraseniaVO.getLink()+"\" style=\"text-align: center;\">http://localhost:8080/#/cambiarContrasenia/"+ mailDeCambioContraseniaVO.getLink()+"</a>";
+        msg += "<a href=\"http://webstore.jl.serv.net.mx/#/cambiarContrasenia/"+ mailDeCambioContraseniaVO.getLink()+"\" style=\"text-align: center;\">http://localhost:8080/#/cambiarContrasenia/"+ mailDeCambioContraseniaVO.getLink()+"</a>";
         return msg;
     }
 }

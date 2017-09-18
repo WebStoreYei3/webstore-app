@@ -1,10 +1,7 @@
 package com.webstore.rest;
 
 import com.webstore.core.business.UsuarioBusiness;
-import com.webstore.rest.request.LoginRequest;
-import com.webstore.rest.request.LogoutRequest;
-import com.webstore.rest.request.SetearNuevaContraseniaRequest;
-import com.webstore.rest.request.SolicitudContraseniaRequest;
+import com.webstore.rest.request.*;
 import com.webstore.rest.response.ClienteLoginResponse;
 import com.webstore.rest.response.EmpleadoLoginResponse;
 import com.webstore.rest.response.RespuestaGeneralResponse;
@@ -23,6 +20,11 @@ public class UsuarioRESTController {
             UsuarioBusiness usuarioBusiness
     ){
         this.usuarioBusiness = usuarioBusiness;
+    }
+
+    @RequestMapping(value="/registrarse", method = RequestMethod.POST)
+    public ClienteLoginResponse empleadoLogin(@RequestBody RegistrarseRequest request){
+        return usuarioBusiness.registrarse(request);
     }
 
     @RequestMapping(value="/empleadoLogin", method = RequestMethod.POST)
